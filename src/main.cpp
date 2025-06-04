@@ -8,8 +8,40 @@
 */
 
 #include <iostream>
+#include <string>
+
+void welcomeMsg() {
+	std::cout << "===================\n";
+	std::cout << "Welcome to AboutMig\n";
+	std::cout << "===================\n";
+}
+
+// Getting the category
+std::string getCategory() {
+	std::string category;
+	std::cout << "\nEnter category: ";
+	std::cin >> category;
+	
+	return category;
+}
+
+// Getting the value of the variable
+std::string getValue() {
+	std::string value;
+	std::cout << "\nEnter value: ";
+	std::cin >> value;
+
+	return value;
+}
 
 int main() {
-	std::cout << "Compilation test! \n";
-	return 0;
+	// Display welcome messsage
+	std::string category;
+	std::string value;
+	welcomeMsg();
+
+	category = getCategory();
+	value = getValue();
+
+	std::cout << "\n\nYou entered: " << category << " - " << value << "\n";
 }
