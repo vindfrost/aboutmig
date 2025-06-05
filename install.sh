@@ -2,7 +2,7 @@
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --clean|-c)
+    --clean|-c) # For --clean or -c command
       echo "Running clean operation..."
       rm -rf build/
       echo "Cleaning sucessful!"
