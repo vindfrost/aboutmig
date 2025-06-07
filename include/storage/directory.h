@@ -9,13 +9,16 @@
  * ------------------------------------------------
 */
 
-#ifndef _STORAGE_DIRECTORY_H
-#define _STORAGE_DIRECTORY_H 
+#ifndef __STORAGE_DIRECTORY_H
+#define __STORAGE_DIRECTORY_H 
 
 #include <string>
 
+// Getting the location for the data directory
 std::string getStorageDir();
+// Checking if the data directory exists
 bool checkForStorageDir();
+// Creating the data directory
 void createStorageDir();
 
 #endif
