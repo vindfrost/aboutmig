@@ -11,6 +11,8 @@
 #include <iostream>
 #include <string>
 
+#include <storage/directory.h>
+
 void welcomeMsg() {
 	std::cout << "===================\n";
 	std::cout << "Welcome to AboutMig\n";
@@ -45,4 +47,6 @@ int main() {
 	value = getValue();
 
 	std::cout << "\n\nYou entered: " << category << " - " << value << "\n";
+
+	std::cout << getStorageDir() << "\n";
 }
