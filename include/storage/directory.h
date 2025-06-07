@@ -14,8 +14,11 @@
 
 #include <string>
 
+// Getting the location for the data directory
 std::string getStorageDir();
+// Checking if the data directory exists
 bool checkForStorageDir();
+// Creating the data directory
 void createStorageDir();
 
 #endif
