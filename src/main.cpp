@@ -48,5 +48,9 @@ int main() {
 
 	std::cout << "\n\nYou entered: " << category << " - " << value << "\n";
 
-	std::cout << checkForStorageDir() << "\n";
+	if (checkForStorageDir() == false) {
+		createStorageDir();	
+	} else {
+		std::cout << "NO dir needed\n";
+	}
 }

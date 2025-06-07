@@ -31,3 +31,8 @@ bool checkForStorageDir() {
 		return false;
 	}
 }
+
+void createStorageDir() {
+	fs::create_directory(getStorageDir());
+	std::cout << "Created directory\n";
+}
