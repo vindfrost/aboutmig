@@ -9,8 +9,8 @@
  * ------------------------------------------------
 */
 
-#ifndef _STORAGE_DIRECTORY_H
-#define _STORAGE_DIRECTORY_H 
+#ifndef __STORAGE_DIRECTORY_H
+#define __STORAGE_DIRECTORY_H 
 
 #include <string>
 
