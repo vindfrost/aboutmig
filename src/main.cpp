@@ -48,5 +48,5 @@ int main() {
 
 	std::cout << "\n\nYou entered: " << category << " - " << value << "\n";
 
-	std::cout << getStorageDir() << "\n";
+	std::cout << checkForStorageDir() << "\n";
 }

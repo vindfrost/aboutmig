@@ -15,5 +15,6 @@
 #include <string>
 
 std::string getStorageDir();
+bool checkForStorageDir();
 
 #endif
