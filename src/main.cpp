@@ -21,22 +21,20 @@ void welcomeMsg() {
 	std::cout << "===================\n";
 }
 
-// Getting the category
+// Getting the category (allow spaces)
 std::string getCategory() {
-	std::string category;
-	std::cout << "\nEnter category: ";
-	std::cin >> category;
-	
-	return category;
+    std::string category;
+    std::cout << "\nEnter category: ";
+    std::getline(std::cin, category);
+    return category;
 }
 
-// Getting the value of the variable
+// Getting the value (allow spaces)
 std::string getValue() {
-	std::string value;
-	std::cout << "\nEnter value: ";
-	std::cin >> value;
-
-	return value;
+    std::string value;
+    std::cout << "\nEnter value: ";
+    std::getline(std::cin, value);
+    return value;
 }
 
 int main() {
