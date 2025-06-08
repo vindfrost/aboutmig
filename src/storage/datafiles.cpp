@@ -90,7 +90,7 @@ std::string readDatafile() {
 					// Append the latest entry to the proccessed data entry
 					std::string key = it.key();
 					std::transform(key.begin(), key.end(), key.begin(), ::toupper);
-					processedData += "\033[1;33m[" + key + "]\033[0m: " + it.value().get<std::string>() + '\n';
+					processedData += "\033[1;33m" + key + "\033[0m: " + it.value().get<std::string>() + '\n';
 				}
 			}
 		}

@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 #include "storage/directory.h"
 #include "storage/datafiles.h"
@@ -44,6 +45,8 @@ int main() {
 	welcomeMsg();
 
 	category = getCategory();
+	category = "[" + category + "]";
+	std::transform(category.begin(), category.end(), category.begin(), ::toupper);	
 	value = getValue();
 
 	std::cout << "\nYou entered: \033[33m" << category << "\033[0m: " << value << "\n\n\n\n";
