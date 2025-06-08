@@ -13,6 +13,8 @@
 #include <filesystem>
 #include <iostream>
 
+#include "storage/directory.h"
+
 namespace fs = std::filesystem;
 
 namespace storage {
