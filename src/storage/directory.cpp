@@ -15,6 +15,7 @@
 
 namespace fs = std::filesystem;
 
+namespace storage {
 // Getting the location for the data directory
 std::string getStorageDir() {
 	const std::string home = std::getenv("HOME");
@@ -38,4 +39,5 @@ bool checkForStorageDir() {
 void createStorageDir() {
 	fs::create_directory(getStorageDir());
 	std::cout << "Created directory\n";
+}
 }
