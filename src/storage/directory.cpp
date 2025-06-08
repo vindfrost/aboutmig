@@ -23,7 +23,6 @@ std::string getStorageDir() {
 	const std::string home = std::getenv("HOME");
 	std::string path = home + "/.local/share/aboutmig";
 
-	std::cout << path << "\n";
 	return path;
 }
 
@@ -40,7 +39,6 @@ bool checkForStorageDir() {
 // Creating the data directory
 void createStorageDir() {
 	fs::create_directory(getStorageDir());
-	std::cout << "Created directory\n";
 }
 
 }

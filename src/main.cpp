@@ -18,13 +18,13 @@
 void welcomeMsg() {
 	std::cout << "===================\n";
 	std::cout << "Welcome to AboutMig\n";
-	std::cout << "===================\n";
+	std::cout << "===================\n\n";
 }
 
 // Getting the category (allow spaces)
 std::string getCategory() {
     std::string category;
-    std::cout << "\nEnter category: ";
+    std::cout << "Enter category: ";
     std::getline(std::cin, category);
     return category;
 }
@@ -32,7 +32,7 @@ std::string getCategory() {
 // Getting the value (allow spaces)
 std::string getValue() {
     std::string value;
-    std::cout << "\nEnter value: ";
+    std::cout << "Enter value: ";
     std::getline(std::cin, value);
     return value;
 }
@@ -46,7 +46,7 @@ int main() {
 	category = getCategory();
 	value = getValue();
 
-	std::cout << "\n\nYou entered: " << category << " - " << value << "\n";
+	std::cout << "\nYou entered: \033[33m" << category << "\033[0m: " << value << "\n\n\n\n";
 
 	if (storage::checkForStorageDir() == false) {
 		storage::createStorageDir();
