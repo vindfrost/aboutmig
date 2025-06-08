@@ -20,11 +20,13 @@ using json = nlohmann::json;
 
 namespace storage {
 
+// Getting the path of the datafile
 std::string getDatafile() {
 	std::string filePath = storage::getStorageDir() + "/data.jsonc";
 	return filePath;
 }
 
+// Checking if datafile exists
 bool checkForDatafile() {
 	std::string filePath = storage::getDatafile();
 	if(fs::exists(filePath) && fs::is_regular_file(filePath)) {
@@ -34,6 +36,7 @@ bool checkForDatafile() {
 	}
 }
 
+// Creating datafile
 void createDatafile() {
 	std::string filePath = storage::getDatafile();
 	std::ofstream outFile(filePath);
@@ -41,25 +44,28 @@ void createDatafile() {
 	outFile.close();
 }
 
-
+// Saving data to the datafile
 void saveDatafile(std::string category, std::string value) {
 	std::string filePath = storage::getDatafile();
 	json datafileObject;
 
+	// Opening the input file
 	std::ifstream datafileIn(filePath, std::ios::in);
 	if (datafileIn && datafileIn.peek() != std::ifstream::traits_type::eof()) {
 		try {
 			datafileIn >> datafileObject;
 		} catch (const json::parse_error& e) {
-			datafileObject = json::array();
+			datafileObject = json::array(); // fallback json array if smth goes wrong (which should never happen)
 		}
 	} else {
 		datafileObject = json::array();
 	}
 	datafileIn.close();
 
+	// Adding to the json array
 	datafileObject.push_back({{category, value}});
 
+	// Write the json to the file
 	std::ofstream datafileOut(filePath, std::ios::trunc);
 	datafileOut << datafileObject.dump(2) << "\n";
 	datafileOut.close();

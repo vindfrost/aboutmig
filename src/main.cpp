@@ -14,6 +14,7 @@
 #include "storage/directory.h"
 #include "storage/datafiles.h"
 
+// Display welcome message
 void welcomeMsg() {
 	std::cout << "===================\n";
 	std::cout << "Welcome to AboutMig\n";
