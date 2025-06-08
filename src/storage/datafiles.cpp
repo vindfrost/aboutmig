@@ -10,6 +10,7 @@
 */
 #include <string>
 #include <filesystem>
+#include <fstream>
 
 namespace fs = std::filesystem;
 
@@ -29,6 +30,12 @@ bool checkForDatafile() {
 	}	else {
 		return false;
 	}
+}
+
+void createDatafile() {
+	std::string filePath = storage::getDatafile();
+	std::ofstream outFile(filePath);
+	outFile.close();
 }
 
 }

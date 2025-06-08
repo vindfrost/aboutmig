@@ -17,6 +17,7 @@
 namespace storage {
 std::string getDatafile();
 bool checkForDatafile();
+void createDatafile();
 }
 
 #endif

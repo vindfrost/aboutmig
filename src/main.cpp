@@ -50,10 +50,10 @@ int main() {
 	std::cout << "\n\nYou entered: " << category << " - " << value << "\n";
 
 	if (storage::checkForStorageDir() == false) {
-		storage::createStorageDir();	
-	} else {
-		std::cout << "NO dir needed\n";
+		storage::createStorageDir();
 	}
-	std::cout << storage::getDatafile() << "\n";
-	std::cout << storage::checkForDatafile() << "\n";
+	if (storage::checkForDatafile() == false) {
+		storage::createDatafile();
+	}
+
 }
