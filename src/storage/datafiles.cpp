@@ -88,7 +88,9 @@ std::string readDatafile() {
 			if (item.is_object()) {
 				for (auto it = item.begin(); it != item.end(); ++it) {
 					// Append the latest entry to the proccessed data entry
-					processedData = processedData + it.key() + " - " + it.value().get<std::string>() + '\n';
+					std::string key = it.key();
+					std::transform(key.begin(), key.end(), key.begin(), ::toupper);
+					processedData += "[" + key + "]"+ ": " + it.value().get<std::string>() + '\n';
 				}
 			}
 		}
