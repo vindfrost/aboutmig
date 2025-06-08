@@ -12,9 +12,11 @@
 #include <filesystem>
 #include <fstream>
 
-namespace fs = std::filesystem;
-
 #include "storage/directory.h"
+#include "nlohmann/json.hpp"
+
+namespace fs = std::filesystem;
+using json = nlohmann::json;
 
 namespace storage {
 
@@ -35,7 +37,33 @@ bool checkForDatafile() {
 void createDatafile() {
 	std::string filePath = storage::getDatafile();
 	std::ofstream outFile(filePath);
+	outFile << "[]\n";  // Initialize with an empty JSON array
 	outFile.close();
 }
+
+
+void saveDatafile(std::string category, std::string value) {
+	std::string filePath = storage::getDatafile();
+	json datafileObject;
+
+	std::ifstream datafileIn(filePath, std::ios::in);
+	if (datafileIn && datafileIn.peek() != std::ifstream::traits_type::eof()) {
+		try {
+			datafileIn >> datafileObject;
+		} catch (const json::parse_error& e) {
+			datafileObject = json::array();
+		}
+	} else {
+		datafileObject = json::array();
+	}
+	datafileIn.close();
+
+	datafileObject.push_back({{category, value}});
+
+	std::ofstream datafileOut(filePath, std::ios::trunc);
+	datafileOut << datafileObject.dump(2) << "\n";
+	datafileOut.close();
+}
+
 
 }

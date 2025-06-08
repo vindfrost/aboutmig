@@ -55,5 +55,6 @@ int main() {
 	if (storage::checkForDatafile() == false) {
 		storage::createDatafile();
 	}
+	storage::saveDatafile(category, value);
 
 }
