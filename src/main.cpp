@@ -11,7 +11,8 @@
 #include <iostream>
 #include <string>
 
-#include <storage/directory.h>
+#include "storage/directory.h"
+#include "storage/datafiles.h"
 
 void welcomeMsg() {
 	std::cout << "===================\n";
@@ -48,9 +49,10 @@ int main() {
 
 	std::cout << "\n\nYou entered: " << category << " - " << value << "\n";
 
-	if (checkForStorageDir() == false) {
-		createStorageDir();	
+	if (storage::checkForStorageDir() == false) {
+		storage::createStorageDir();	
 	} else {
 		std::cout << "NO dir needed\n";
 	}
+	std::cout << storage::getDatafile();
 }
