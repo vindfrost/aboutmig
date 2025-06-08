@@ -11,6 +11,7 @@
 #include <string>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
 
 #include "storage/directory.h"
 #include "nlohmann/json.hpp"
@@ -71,5 +72,27 @@ void saveDatafile(std::string category, std::string value) {
 	datafileOut.close();
 }
 
+// Reads the datafile
+std::string readDatafile() {
+	std::string filePath = storage::getDatafile();
+	std::string processedData;
+	std::ifstream inFile(filePath);
+
+	// json Object
+	json data;
+	inFile >> data;
+	inFile.close();
+
+	// Parsing for every value in the json object
+	for (const auto& item : data) {
+			if (item.is_object()) {
+				for (auto it = item.begin(); it != item.end(); ++it) {
+					// Append the latest entry to the proccessed data entry
+					processedData = processedData + it.key() + " - " + it.value().dump() + '\n';
+				}
+			}
+		}
+	return processedData;
+}
 
 }

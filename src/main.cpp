@@ -58,4 +58,5 @@ int main() {
 	}
 	storage::saveDatafile(category, value);
 
+	std::cout << storage::readDatafile();
 }

@@ -23,6 +23,8 @@ bool checkForDatafile();
 void createDatafile();
 // Saving data to the datafile
 void saveDatafile(std::string catagory, std::string value);
+// Reading data from the datafile
+std::string readDatafile();
 }
 
 #endif
