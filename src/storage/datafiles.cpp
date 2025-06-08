@@ -9,12 +9,26 @@
  * ------------------------------------------------
 */
 #include <string>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 #include "storage/directory.h"
 
 namespace storage {
+
 std::string getDatafile() {
-	std::string fileDir = storage::getStorageDir() + "/data.jsonc";
-	return fileDir;
+	std::string filePath = storage::getStorageDir() + "/data.jsonc";
+	return filePath;
 }
+
+bool checkForDatafile() {
+	std::string filePath = storage::getDatafile();
+	if(fs::exists(filePath) && fs::is_regular_file(filePath)) {
+		return true;
+	}	else {
+		return false;
+	}
+}
+
 }

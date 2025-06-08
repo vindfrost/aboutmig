@@ -54,5 +54,6 @@ int main() {
 	} else {
 		std::cout << "NO dir needed\n";
 	}
-	std::cout << storage::getDatafile();
+	std::cout << storage::getDatafile() << "\n";
+	std::cout << storage::checkForDatafile() << "\n";
 }
