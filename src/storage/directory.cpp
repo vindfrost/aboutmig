@@ -11,7 +11,6 @@
 
 #include <string>
 #include <filesystem>
-#include <iostream>
 
 #include "storage/directory.h"
 
