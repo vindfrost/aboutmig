@@ -30,6 +30,10 @@ int main(int argc, char* argv[]) {
 	bool do_help = false;
 	bool do_version = false;
 
+	// ANSI escape codes
+	const std::string ANSI_bold_yellow = "\033[1;33m";
+	const std::string ANSI_reset = "\033[0m";	
+
 	for (int i = 1; i < argc; ++i) {
         const char* arg = argv[i];
 
@@ -97,7 +101,7 @@ int main(int argc, char* argv[]) {
 		std::transform(category.begin(), category.end(), category.begin(), ::toupper);	
 		value = getValue();
 
-		std::cout << "\nYou entered:\n\033[1;33m[" << category << "]\033[0m: " << value << "\n";
+		std::cout << "\nYou entered:\n" << ANSI_bold_yellow << "[" << category << "]" << ANSI_reset << ": " << value << "\n";
 
 		storage::saveDatafile(category, value);
 		return 0;
