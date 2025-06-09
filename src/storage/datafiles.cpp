@@ -12,6 +12,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <cstdio>
 
 #include "storage/directory.h"
 #include "nlohmann/json.hpp"
@@ -97,4 +98,12 @@ std::string readDatafile() {
 	return processedData;
 }
 
+void deleteDatafile() {
+	std::string filePath = storage::getDatafile();
+	
+	std::remove(filePath.c_str());
 }
+
+}
+
+

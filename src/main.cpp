@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
 	// Argument values
 	bool do_list = false;
 	bool do_add = false;
+	bool do_reset = false;
 	bool do_help = false;
 	bool do_version = false;
 
@@ -42,6 +43,9 @@ int main(int argc, char* argv[]) {
                     case 'a':
                         do_add = true;
                         break;
+										case 'r':
+												do_reset = true;
+												break;
 										case 'h':
 												do_help = true;
 												break;
@@ -67,6 +71,13 @@ int main(int argc, char* argv[]) {
 		return 0;
 	} else if (do_version) {
 		verMsg();
+		return 0;
+	}
+
+	if (do_reset) {
+		storage::deleteDatafile();
+		std::cout << "Deleted datafile.\n";
+
 		return 0;
 	}
 
@@ -107,10 +118,11 @@ void helpMsg() {
 	std::cout << "AboutMig - Store info about yourself!\n\n";
 	std::cout << "Usage:	aboutmig -[arguments]\n\n";
 	std::cout << "Arguments:\n";
-	std::cout << "	-h							Display this helper text.\n";
 	std::cout << "	-l							List all information.\n";
 	std::cout << "	-a							Add information.\n";
-	std::cout << "	-v							Display version.\n\n";
+	std::cout << "	-r							Reset information\n";
+	std::cout << "	-v							Display version.\n";
+	std::cout << "	-h							Display this helper text.\n\n";
 }
 
 // Displaying version

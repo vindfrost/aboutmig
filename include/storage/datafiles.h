@@ -25,6 +25,8 @@ void createDatafile();
 void saveDatafile(std::string catagory, std::string value);
 // Reading data from the datafile
 std::string readDatafile();
+// Deleting datafile
+void deleteDatafile();
 }
 
 #endif
