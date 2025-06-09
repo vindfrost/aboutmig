@@ -69,11 +69,11 @@ int main(int argc, char* argv[]) {
 	if (do_help) {
 		helpMsg();
 		return 0;
-	} else if (do_version) {
+	}
+	if (do_version) {
 		verMsg();
 		return 0;
 	}
-
 	if (do_reset) {
 		storage::deleteDatafile();
 		std::cout << "Deleted datafile.\n";
