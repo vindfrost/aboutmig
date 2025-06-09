@@ -22,6 +22,15 @@ void welcomeMsg() {
 	std::cout << "===================\n\n";
 }
 
+void helpMsg() {
+	std::cout << "AboutMig - Store info about yourself!\n\n";
+	std::cout << "Usage:	aboutmig -[arguments]\n\n";
+	std::cout << "Arguments:\n";
+	std::cout << "	-h							Display this helper text.\n";
+	std::cout << "	-l							List all information.\n";
+	std::cout << "	-a							Add information.\n\n";
+}
+
 // Getting the category (allow spaces)
 std::string getCategory() {
     std::string category;
@@ -38,18 +47,46 @@ std::string getValue() {
     return value;
 }
 
-int main() {
-	// Display welcome messsage
-	std::string category;
-	std::string value;
-	welcomeMsg();
+int main(int argc, char* argv[]) {
+	// Argument values
+	bool do_list = false;
+	bool do_add = false;
+	bool do_help = false;
 
-	category = getCategory();
-	category = category;
-	std::transform(category.begin(), category.end(), category.begin(), ::toupper);	
-	value = getValue();
+	for (int i = 1; i < argc; ++i) {
+        const char* arg = argv[i];
 
-	std::cout << "\nYou entered: \033[33m" << category << "\033[0m: " << value << "\n\n\n\n";
+        // Check if argument starts with a dash
+        if (arg[0] == '-') {
+            for (int j = 1; arg[j] != '\0'; ++j) {
+                switch (arg[j]) {
+                    case 'l':
+                        do_list = true;
+                        break;
+                    case 'a':
+                        do_add = true;
+                        break;
+										case 'h':
+												do_help = true;
+												break;
+                    default:
+                        std::cerr << "Unknown option: -" << arg[j] << ".\n";
+												std::cout << "More info with \"aboutmig -h\".\n";
+												exit(4);
+                        break;
+                }
+            }
+        } else {
+            std::cerr << "Invalid argument: " << arg << ".\n";
+						std::cout << "More info with \"aboutmig -h\".\n";
+						exit(4);
+        }
+    }
+
+	if (do_help) {
+		helpMsg();
+		exit(0);
+	}
 
 	if (storage::checkForStorageDir() == false) {
 		storage::createStorageDir();
@@ -57,7 +94,35 @@ int main() {
 	if (storage::checkForDatafile() == false) {
 		storage::createDatafile();
 	}
-	storage::saveDatafile(category, value);
 
-	std::cout << storage::readDatafile();
+	if (do_add) {
+		// Display welcome messsage
+		std::string category;
+		std::string value;
+
+		welcomeMsg();
+
+		category = getCategory();
+		category = category;
+		std::transform(category.begin(), category.end(), category.begin(), ::toupper);	
+		value = getValue();
+
+		std::cout << "\nYou entered:\n\033[33m" << category << "\033[0m: " << value << "\n\n\n\n";
+
+		storage::saveDatafile(category, value);
+		exit(0);
+	} else if (do_list) {
+		// Display welcome messsage
+		welcomeMsg();
+		std::cout << storage::readDatafile();
+		exit(0);
+	}
+
+	// If no valid args given
+	if (!do_list && !do_add) {
+    std::cerr << "No argument provided.\n";
+		std::cout << "More info with \"aboutmig -h\".\n";
+
+    exit(3);
+  }
 }
