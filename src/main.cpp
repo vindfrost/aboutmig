@@ -15,13 +15,20 @@
 #include "storage/directory.h"
 #include "storage/datafiles.h"
 
+std::string VERSION = "0.0.1";
+
 void helpMsg() {
 	std::cout << "AboutMig - Store info about yourself!\n\n";
 	std::cout << "Usage:	aboutmig -[arguments]\n\n";
 	std::cout << "Arguments:\n";
 	std::cout << "	-h							Display this helper text.\n";
 	std::cout << "	-l							List all information.\n";
-	std::cout << "	-a							Add information.\n\n";
+	std::cout << "	-a							Add information.\n";
+	std::cout << "	-v							Display version.\n\n";
+}
+
+void verMsg(std::string VERSION) {
+	std::cout << "AboutMig " << VERSION << "\n";
 }
 
 // Getting the category (allow spaces)
@@ -45,6 +52,7 @@ int main(int argc, char* argv[]) {
 	bool do_list = false;
 	bool do_add = false;
 	bool do_help = false;
+	bool do_version = false;
 
 	for (int i = 1; i < argc; ++i) {
         const char* arg = argv[i];
@@ -62,6 +70,9 @@ int main(int argc, char* argv[]) {
 										case 'h':
 												do_help = true;
 												break;
+										case 'v':
+												do_version = true;
+												break;
                     default:
                         std::cerr << "Unknown option: -" << arg[j] << ".\n";
 												std::cout << "More info with \"aboutmig -h\".\n";
@@ -78,6 +89,9 @@ int main(int argc, char* argv[]) {
 
 	if (do_help) {
 		helpMsg();
+		exit(0);
+	} else if (do_version) {
+		verMsg(VERSION);
 		exit(0);
 	}
 
@@ -98,7 +112,7 @@ int main(int argc, char* argv[]) {
 		std::transform(category.begin(), category.end(), category.begin(), ::toupper);	
 		value = getValue();
 
-		std::cout << "\nYou entered:\n\033[33m" << category << "\033[0m: " << value << "\n\n\n\n";
+		std::cout << "\nYou entered:\n\033[1;33m[" << category << "]\033[0m: " << value << "\n";
 
 		storage::saveDatafile(category, value);
 		exit(0);
@@ -107,11 +121,8 @@ int main(int argc, char* argv[]) {
 		exit(0);
 	}
 
-	// If no valid args given
-	if (!do_list && !do_add) {
-    std::cerr << "No arguments provided.\n";
-		std::cout << "More info with \"aboutmig -h\".\n";
+  std::cerr << "No arguments provided.\n";
+	std::cout << "More info with \"aboutmig -h\".\n";
+	exit(3);
 
-    exit(3);
-  }
 }
