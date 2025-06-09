@@ -45,7 +45,7 @@ int main() {
 	welcomeMsg();
 
 	category = getCategory();
-	category = "[" + category + "]";
+	category = category;
 	std::transform(category.begin(), category.end(), category.begin(), ::toupper);	
 	value = getValue();
 

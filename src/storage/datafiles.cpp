@@ -64,7 +64,7 @@ void saveDatafile(std::string category, std::string value) {
 	datafileIn.close();
 
 	// Adding to the json array
-	datafileObject.push_back({{category, value}});
+	datafileObject.push_back({{( "[" + category + "]"), value}});
 
 	// Write the json to the file
 	std::ofstream datafileOut(filePath, std::ios::trunc);
