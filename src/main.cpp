@@ -15,7 +15,7 @@
 #include "storage/directory.h"
 #include "storage/datafiles.h"
 
-std::string VERSION = "0.0.1";
+const std::string VERSION = "0.0.1";
 
 void helpMsg() {
 	std::cout << "AboutMig - Store info about yourself!\n\n";
@@ -76,23 +76,23 @@ int main(int argc, char* argv[]) {
                     default:
                         std::cerr << "Unknown option: -" << arg[j] << ".\n";
 												std::cout << "More info with \"aboutmig -h\".\n";
-												exit(4);
+												return 4;
                         break;
                 }
             }
         } else {
             std::cerr << "Invalid argument: " << arg << ".\n";
 						std::cout << "More info with \"aboutmig -h\".\n";
-						exit(4);
+						return 4;
         }
     }
 
 	if (do_help) {
 		helpMsg();
-		exit(0);
+		return 0;
 	} else if (do_version) {
 		verMsg(VERSION);
-		exit(0);
+		return 0;
 	}
 
 	if (storage::checkForStorageDir() == false) {
@@ -115,14 +115,14 @@ int main(int argc, char* argv[]) {
 		std::cout << "\nYou entered:\n\033[1;33m[" << category << "]\033[0m: " << value << "\n";
 
 		storage::saveDatafile(category, value);
-		exit(0);
+		return 0;
 	} else if (do_list) {
 		std::cout << storage::readDatafile();
-		exit(0);
+		return 0;
 	}
 
   std::cerr << "No arguments provided.\n";
 	std::cout << "More info with \"aboutmig -h\".\n";
-	exit(3);
+	return 3;
 
 }
