@@ -15,7 +15,7 @@
 #include "storage/directory.h"
 #include "storage/datafiles.h"
 
-const std::string VERSION = "0.0.1";
+constexpr std::string_view VERSION = "0.0.1";
 
 void helpMsg();
 void verMsg();
