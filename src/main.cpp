@@ -127,7 +127,10 @@ void helpMsg() {
 
 // Displaying version
 void verMsg() {
-	std::cout << "AboutMig " << VERSION << "\n";
+	std::cout << "AboutMig " << VERSION << "\n\n";
+	std::cout << "This project uses the 'nlohmann' JSON library, which is licensed under the MIT license.\n";
+	std::cout << "More information about the library can be found at:\n";
+	std::cout << "https://github.com/nlohmann/json/\n";
 }
 
 // Getting the category
