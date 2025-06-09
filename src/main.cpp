@@ -17,6 +17,10 @@
 
 constexpr std::string_view VERSION = "0.0.1";
 
+constexpr int EXIT_MISSING_ARGUMENT = 3;
+constexpr int EXIT_INVALID_ARGUMENT = 4;
+constexpr int EXIT_EMPTY_INPUT = 5;
+
 void helpMsg();
 void verMsg();
 std::string getCategory();
@@ -59,14 +63,14 @@ int main(int argc, char* argv[]) {
                     default:
                         std::cerr << "Unknown option: -" << arg[j] << ".\n";
 												std::cout << "More info with \"aboutmig -h\".\n";
-												return 4;
+												return EXIT_INVALID_ARGUMENT;
                         break;
                 }
             }
         } else {
             std::cerr << "Invalid argument: " << arg << ".\n";
 						std::cout << "More info with \"aboutmig -h\".\n";
-						return 4;
+						return EXIT_INVALID_ARGUMENT;
         }
     }
 
@@ -112,7 +116,7 @@ int main(int argc, char* argv[]) {
 
   std::cerr << "No arguments provided.\n";
 	std::cout << "More info with \"aboutmig -h\".\n";
-	return 3;
+	return EXIT_MISSING_ARGUMENT;
 
 }
 
@@ -146,7 +150,7 @@ std::string getCategory() {
 };
 if (category.empty() || isOnlyWhitespace(category)) {
     std::cerr << "Category cannot be empty.\n";
-    exit(5);
+    exit(EXIT_EMPTY_INPUT);
 }
     return category;
 }
@@ -161,7 +165,7 @@ std::string getValue() {
 };
 if (value.empty() || isOnlyWhitespace(value)) {
     std::cerr << "Value cannot be empty.\n";
-    exit(5);
+    exit(EXIT_EMPTY_INPUT);
 }
     return value;
 }
