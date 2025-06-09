@@ -15,13 +15,6 @@
 #include "storage/directory.h"
 #include "storage/datafiles.h"
 
-// Display welcome message
-void welcomeMsg() {
-	std::cout << "===================\n";
-	std::cout << "Welcome to AboutMig\n";
-	std::cout << "===================\n\n";
-}
-
 void helpMsg() {
 	std::cout << "AboutMig - Store info about yourself!\n\n";
 	std::cout << "Usage:	aboutmig -[arguments]\n\n";
@@ -100,8 +93,6 @@ int main(int argc, char* argv[]) {
 		std::string category;
 		std::string value;
 
-		welcomeMsg();
-
 		category = getCategory();
 		category = category;
 		std::transform(category.begin(), category.end(), category.begin(), ::toupper);	
@@ -112,15 +103,13 @@ int main(int argc, char* argv[]) {
 		storage::saveDatafile(category, value);
 		exit(0);
 	} else if (do_list) {
-		// Display welcome messsage
-		welcomeMsg();
 		std::cout << storage::readDatafile();
 		exit(0);
 	}
 
 	// If no valid args given
 	if (!do_list && !do_add) {
-    std::cerr << "No argument provided.\n";
+    std::cerr << "No arguments provided.\n";
 		std::cout << "More info with \"aboutmig -h\".\n";
 
     exit(3);
