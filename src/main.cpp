@@ -17,35 +17,10 @@
 
 const std::string VERSION = "0.0.1";
 
-void helpMsg() {
-	std::cout << "AboutMig - Store info about yourself!\n\n";
-	std::cout << "Usage:	aboutmig -[arguments]\n\n";
-	std::cout << "Arguments:\n";
-	std::cout << "	-h							Display this helper text.\n";
-	std::cout << "	-l							List all information.\n";
-	std::cout << "	-a							Add information.\n";
-	std::cout << "	-v							Display version.\n\n";
-}
-
-void verMsg(std::string VERSION) {
-	std::cout << "AboutMig " << VERSION << "\n";
-}
-
-// Getting the category (allow spaces)
-std::string getCategory() {
-    std::string category;
-    std::cout << "Enter category: ";
-    std::getline(std::cin, category);
-    return category;
-}
-
-// Getting the value (allow spaces)
-std::string getValue() {
-    std::string value;
-    std::cout << "Enter value: ";
-    std::getline(std::cin, value);
-    return value;
-}
+void helpMsg();
+void verMsg();
+std::string getCategory();
+std::string getValue();
 
 int main(int argc, char* argv[]) {
 	// Argument values
@@ -91,7 +66,7 @@ int main(int argc, char* argv[]) {
 		helpMsg();
 		return 0;
 	} else if (do_version) {
-		verMsg(VERSION);
+		verMsg();
 		return 0;
 	}
 
@@ -126,3 +101,36 @@ int main(int argc, char* argv[]) {
 	return 3;
 
 }
+
+// Displaying helper text
+void helpMsg() {
+	std::cout << "AboutMig - Store info about yourself!\n\n";
+	std::cout << "Usage:	aboutmig -[arguments]\n\n";
+	std::cout << "Arguments:\n";
+	std::cout << "	-h							Display this helper text.\n";
+	std::cout << "	-l							List all information.\n";
+	std::cout << "	-a							Add information.\n";
+	std::cout << "	-v							Display version.\n\n";
+}
+
+// Displaying version
+void verMsg() {
+	std::cout << "AboutMig " << VERSION << "\n";
+}
+
+// Getting the category
+std::string getCategory() {
+    std::string category;
+    std::cout << "Enter category: ";
+    std::getline(std::cin, category);
+    return category;
+}
+
+// Getting the value
+std::string getValue() {
+    std::string value;
+    std::cout << "Enter value: ";
+    std::getline(std::cin, value);
+    return value;
+}
+
