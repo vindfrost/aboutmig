@@ -94,7 +94,6 @@ int main(int argc, char* argv[]) {
 		std::string value;
 
 		category = getCategory();
-		category = category;
 		std::transform(category.begin(), category.end(), category.begin(), ::toupper);	
 		value = getValue();
 
