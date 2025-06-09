@@ -138,6 +138,10 @@ std::string getCategory() {
     std::string category;
     std::cout << "Enter category: ";
     std::getline(std::cin, category);
+		if (category == "") {
+			std::cerr <<"Category cannot be empty.\n";
+			exit(5);
+		}
     return category;
 }
 
@@ -146,6 +150,11 @@ std::string getValue() {
     std::string value;
     std::cout << "Enter value: ";
     std::getline(std::cin, value);
+				if (value == "") {
+			std::cerr <<"Value cannot be empty.\n";
+			exit(5);
+		}
+
     return value;
 }
 
