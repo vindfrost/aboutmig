@@ -15,7 +15,7 @@
 #include "storage/datafiles.h"
 #include "storage/directory.h"
 
-constexpr std::string_view VERSION = "0.0.1";
+constexpr std::string_view VERSION = "0.1.0";
 
 constexpr int EXIT_MISSING_ARGUMENT = 3;
 constexpr int EXIT_INVALID_ARGUMENT = 4;
