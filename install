@@ -6,6 +6,7 @@ show_help() {
 	echo "Options:"
 	echo "	-c, --clean					Cleans the build directory."
 	echo "	-b, --build					Builds the executable."
+	echo "	-i, --install				Install executable."
 	echo "	-h, --help					Display this help message."
 }
 
@@ -26,6 +27,11 @@ while [[ $# -gt 0 ]]; do
 			make
       exit 0
       ;;
+		--install|-i)
+			echo "Installing executable"
+			cp ./build/aboutmig /usr/local/bin/aboutmig
+			exit 0
+			;;
     --help|-h)
       show_help
       exit 0
