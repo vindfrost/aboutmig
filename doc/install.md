@@ -1,6 +1,6 @@
 # Installation
 
-To install AboutMig on a linux distrobution, follow these exact steps:
+To install AboutMig on a linux distribution, follow these exact steps:
 
 ```bash
 # Clone the repository
