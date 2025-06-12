@@ -1,4 +1,4 @@
-# USAGE
+# Usage
 
 To use AboutMig, you will have to use the build in arguments:
 
