@@ -2,7 +2,18 @@
 
 ## Compiling Manually
 
-To compile the software manually, do the following:
+First, add the [nlohmann json][nlohmannjsonincludelink] header files to the
+project include directory.
+
+The include directory should look something like this
+
+```txt
+.
+├── nlohmann
+└── storage
+```
+
+Then, run the following commands
 
 ```bash
 # Clone the repository
@@ -16,3 +27,5 @@ cd aboutmig
 # Install the software
 ./install -i
 ```
+
+[nlohmannjsonincludelink]: https://github.com/nlohmann/json/releases/download/v3.12.0/include.zip
