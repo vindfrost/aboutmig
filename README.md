@@ -6,6 +6,10 @@
 * Add information about yourself
 * Extremely lightweight
 
+## Installation
+
+For the installation guide, refer to `doc/install.md`
+
 ## Usage
 
 For the usage guide, refer to `doc/usage.md`.
