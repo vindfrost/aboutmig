@@ -1,6 +1,8 @@
 # Installation
 
-## 
+## Compiling Manually
+
+To compile the software manually, do the following:
 
 ```bash
 # Clone the repository
