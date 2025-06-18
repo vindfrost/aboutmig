@@ -1,6 +1,8 @@
 <h1 align=center>AboutMig</h1>
 
-![Icon](/img/icon.png)
+<div align="center">
+  <img src="/img/icon.png" alt="Icon" style="width:1000%;" />
+</div>
 
 <h2 align=center>Store info about yourself!</h2>
 
