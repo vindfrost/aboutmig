@@ -1,9 +1,5 @@
 <h1 align=center>AboutMig</h1>
 
-<div align="center">
-  <img src="/img/icon.png" alt="Icon" style="width:1000%;" />
-</div>
-
 <h2 align=center>Store info about yourself!</h2>
 
 ![Screenshot](/img/screenshot0.png)
