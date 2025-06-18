@@ -1,5 +1,5 @@
 <h1 align=center>AboutMig</h1>
-![Icon](/img/icon.svg)
+![Icon](/img/icon.png)
 <h2 align=center>Store info about yourself!</h2>
 
 ![Screenshot](/img/screenshot0.png)
