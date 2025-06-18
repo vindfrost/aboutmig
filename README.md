@@ -13,6 +13,8 @@
 
 For the installation guide, refer to `doc/install.md`
 
+Also, build binaries for linux can be found in the GitHub release page.
+
 ## Usage
 
 For the usage guide, refer to `doc/usage.md`.
