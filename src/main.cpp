@@ -9,146 +9,119 @@
  */
 
 #include <algorithm>
+#include <cstdlib>
 #include <iostream>
 #include <string>
 
 #include "storage/datafiles.h"
 #include "storage/directory.h"
 
-constexpr std::string_view VERSION = "0.1.0";
+#include "cxxopts/cxxopts.hpp"
+
+constexpr std::string_view VERSION = "0.1.1";
 
 constexpr int EXIT_MISSING_ARGUMENT = 3;
 constexpr int EXIT_INVALID_ARGUMENT = 4;
 constexpr int EXIT_EMPTY_INPUT = 5;
 
-void helpMsg();
 void verMsg();
+void licenseMsg();
+void checkFiles();
 std::string getCategory();
 std::string getValue();
 
-int main(int argc, char *argv[])
-{
-  // Argument values
-  bool do_list = false;
-  bool do_add = false;
-  bool do_reset = false;
-  bool do_help = false;
-  bool do_version = false;
-
+int main(int argc, char *argv[]) {
   // ANSI escape codes
   const std::string ANSI_bold_yellow = "\033[1;33m";
   const std::string ANSI_reset = "\033[0m";
 
-  for (int i = 1; i < argc; ++i) {
-    const char *arg = argv[i];
+  if (argc == 1) {
+    std::cerr << "Error: No arguments provided.\n";
+    return EXIT_MISSING_ARGUMENT;
+  }
 
-    // Check if argument starts with a dash
-    if (arg[0] == '-') {
-      for (int j = 1; arg[j] != '\0'; ++j) {
-        switch (arg[j]) {
-          case 'l':
-            do_list = true;
-            break;
-          case 'a':
-            do_add = true;
-            break;
-          case 'r':
-            do_reset = true;
-            break;
-          case 'h':
-            do_help = true;
-            break;
-          case 'v':
-            do_version = true;
-            break;
-          default:
-            std::cerr << "Unknown option: -" << arg[j] << ".\n";
-            std::cout << "More info with \"aboutmig -h\".\n";
-            return EXIT_INVALID_ARGUMENT;
-            break;
-        }
-      }
+  try {
+    cxxopts::Options options("aboutmig",
+                             "Cross-platform software to add information about yourself. Version " +
+                               std::string(VERSION));
+
+    options.add_options()("h,help", "Print helper text.")("a,add", "Add information.")(
+      "l,list", "List all currently stored information.")("r,reset", "Reset datafile.")(
+      "L,license", "List all licenses.")("v,version", "Print version.");
+
+    auto result = options.parse(argc, argv);
+
+    if (result.count("help")) {
+      std::cout << options.help() << "\n";
+      return EXIT_SUCCESS;
     }
-    else {
-      std::cerr << "Invalid argument: " << arg << ".\n";
-      std::cout << "More info with \"aboutmig -h\".\n";
-      return EXIT_INVALID_ARGUMENT;
+    if (result.count("add")) {
+      checkFiles();
+
+      // Display welcome messsage
+      std::string category;
+      std::string value;
+
+      category = getCategory();
+      std::transform(category.begin(), category.end(), category.begin(), ::toupper);
+      value = getValue();
+
+      std::cout << "\nYou entered:\n"
+                << ANSI_bold_yellow << "[" << category << "]" << ANSI_reset << ": " << value
+                << "\n";
+
+      storage::saveDatafile(category, value);
     }
+    if (result.count("list")) {
+      std::cout << storage::readDatafile();
+    }
+    if (result.count("reset")) {
+      storage::deleteDatafile();
+      std::cout << "Deleted datafile.\n";
+    }
+    if (result.count("version")) {
+      verMsg();
+      return EXIT_SUCCESS;
+    }
+    if (result.count("license")) {
+      licenseMsg();
+      return EXIT_SUCCESS;
+    }
+  } catch (cxxopts::exceptions::no_such_option &e) {
+    std::cerr << "Error: Unknown option provided. " << e.what() << "\n";
+    return EXIT_INVALID_ARGUMENT;
   }
 
-  if (do_help) {
-    helpMsg();
-    return 0;
-  }
-  if (do_version) {
-    verMsg();
-    return 0;
-  }
-  if (do_reset) {
-    storage::deleteDatafile();
-    std::cout << "Deleted datafile.\n";
+  return EXIT_SUCCESS;
+}
 
-    return 0;
-  }
+// Displaying version
+void verMsg() {
+  std::cout << "AboutMig " << VERSION << "\n";
+}
 
+void licenseMsg() {
+  std::cout
+    << "This project uses the 'nlohmann' JSON library, which is licensed under the MIT license.\n";
+  std::cout << "More information about the library can be found at:\n";
+  std::cout << "https://github.com/nlohmann/json/\n\n";
+
+  std::cout << "This project uses the 'cxxopts' header, which is licensed under the MIT license.\n";
+  std::cout << "More information about the header can be found at:\n";
+  std::cout << "https://github.com/jarro2783/cxxopts/\n";
+}
+
+void checkFiles() {
   if (storage::checkForStorageDir() == false) {
     storage::createStorageDir();
   }
   if (storage::checkForDatafile() == false) {
     storage::createDatafile();
   }
-
-  if (do_add) {
-    // Display welcome messsage
-    std::string category;
-    std::string value;
-
-    category = getCategory();
-    std::transform(category.begin(), category.end(), category.begin(), ::toupper);
-    value = getValue();
-
-    std::cout << "\nYou entered:\n"
-              << ANSI_bold_yellow << "[" << category << "]" << ANSI_reset << ": " << value << "\n";
-
-    storage::saveDatafile(category, value);
-    return 0;
-  }
-  else if (do_list) {
-    std::cout << storage::readDatafile();
-    return 0;
-  }
-
-  std::cerr << "No arguments provided.\n";
-  std::cout << "More info with \"aboutmig -h\".\n";
-  return EXIT_MISSING_ARGUMENT;
-}
-
-// Displaying helper text
-void helpMsg()
-{
-  std::cout << "AboutMig - Store info about yourself!\n\n";
-  std::cout << "Usage:	aboutmig -[arguments]\n\n";
-  std::cout << "Arguments:\n";
-  std::cout << "	-l							List all information.\n";
-  std::cout << "	-a							Add information.\n";
-  std::cout << "	-r							Reset information\n";
-  std::cout << "	-v							Display version.\n";
-  std::cout << "	-h							Display this helper text.\n\n";
-}
-
-// Displaying version
-void verMsg()
-{
-  std::cout << "AboutMig " << VERSION << "\n\n";
-  std::cout
-    << "This project uses the 'nlohmann' JSON library, which is licensed under the MIT license.\n";
-  std::cout << "More information about the library can be found at:\n";
-  std::cout << "https://github.com/nlohmann/json/\n";
 }
 
 // Getting the category
-std::string getCategory()
-{
+std::string getCategory() {
   std::string category;
   std::cout << "Enter category: ";
   std::getline(std::cin, category);
@@ -163,8 +136,7 @@ std::string getCategory()
 }
 
 // Getting the value
-std::string getValue()
-{
+std::string getValue() {
   std::string value;
   std::cout << "Enter value: ";
   std::getline(std::cin, value);

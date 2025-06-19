@@ -4,4 +4,5 @@ TODO*
 
 .cache/
 build/
+include/cxxopts
 include/nlohmann
