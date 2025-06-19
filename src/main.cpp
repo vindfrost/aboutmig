@@ -34,7 +34,7 @@ std::string getValue();
 int main(int argc, char *argv[]) {
 
   if (argc == 1) {
-    std::cerr << "Error: No arguments provided.\n";
+    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: No arguments provided.\n" << colorcodes::reset;
     return EXIT_MISSING_ARGUMENT;
   }
 
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
       value = getValue();
 
       std::cout << "\nYou entered:\n"
-                << colorcodes::yellow << "[" << category << "]" << colorcodes::reset << ": " << value
+                << colorcodes::fgYellow << "[" << category << "]" << colorcodes::reset << ": " << value
                 << "\n";
 
       storage::saveDatafile(category, value);
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
     }
     if (result.count("reset")) {
       storage::deleteDatafile();
-      std::cout << "Deleted datafile.\n";
+      std::cout << colorcodes::fgBrightGreen << "Deleted datafile.\n" << colorcodes::reset;
     }
     if (result.count("version")) {
       verMsg();
@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
       return EXIT_SUCCESS;
     }
   } catch (cxxopts::exceptions::no_such_option &e) {
-    std::cerr << "Error: Unknown option provided. " << e.what() << "\n";
+    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: Unknown option provided. " << e.what() << "\n";
     return EXIT_INVALID_ARGUMENT;
   }
 
@@ -142,7 +142,7 @@ std::string getValue() {
   std::cout << "Enter value: ";
   std::getline(std::cin, value);
   if (value.empty() || isOnlyWhitespace(value)) {
-    std::cerr << "Value cannot be empty.\n";
+    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Value cannot be empty.\n" << colorcodes::reset;
     exit(EXIT_EMPTY_INPUT);
   }
   return value;

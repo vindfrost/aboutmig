@@ -95,7 +95,7 @@ std::string readDatafile() {
         // Append the latest entry to the proccessed data entry
         std::string key = it.key();
         std::transform(key.begin(), key.end(), key.begin(), ::toupper);
-        processedData += colorcodes::yellow + key + colorcodes::reset + it.value().get<std::string>() + '\n';
+        processedData += colorcodes::fgYellow + key + colorcodes::reset + it.value().get<std::string>() + '\n';
       }
     }
   }
