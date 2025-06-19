@@ -23,6 +23,9 @@ check_include_files("nlohmann/json.hpp" HAVE_NLOHMANN_JSON_H)
 # cxxopts header check
 check_include_files("cxxopts/cxxopts.hpp" HAVE_CXXOPTS_H)
 
+# Colorcodes check
+check_include_files("colorcodes.h" HAVE_COLORCODES_H)
+
 # Storage checks
 check_include_files("storage/datafiles.h" HAVE_STORAGE_DATAFILES_H)
 check_include_files("storage/directory.h" HAVE_STORAGE_DIRECORY_H)
