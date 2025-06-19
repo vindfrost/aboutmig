@@ -21,15 +21,18 @@
 
 constexpr std::string_view VERSION = "0.1.3";
 
-constexpr int EXIT_MISSING_ARGUMENT = 3;
-constexpr int EXIT_INVALID_ARGUMENT = 4;
-constexpr int EXIT_EMPTY_INPUT = 5;
-
 void verMsg();
 void licenseMsg();
 void checkFiles();
 std::string getInput(const std::string & prompt);
 static bool isOnlyWhitespace(const std::string& s);
+
+enum ExitCode {
+	EXIT_NOERROR= 1,
+	EXIT_MISSING_ARGUMENT = 3,
+	EXIT_INVALID_ARGUMENT = 4,
+	EXIT_EMPTY_INPUT = 5,
+};
 
 int main(int argc, char *argv[]) {
 
@@ -51,18 +54,14 @@ int main(int argc, char *argv[]) {
 
     if (result.count("help")) {
       std::cout << options.help() << "\n";
-      return EXIT_SUCCESS;
+      return EXIT_NOERROR;
     }
     if (result.count("add")) {
       checkFiles();
 
-      // Display welcome messsage
-      std::string category;
-      std::string value;
-
-      category = getInput("Enter category: ");
+			std::string category = getInput("Enter category: ");
       std::transform(category.begin(), category.end(), category.begin(), ::toupper);
-      value = getInput("Enter value: ");
+			std::string value = getInput("Enter value: ");
 
       std::cout << "\nYou entered:\n"
                 << colorcodes::fgYellow << "[" << category << "]" << colorcodes::reset << ": " << value
@@ -80,18 +79,18 @@ int main(int argc, char *argv[]) {
     }
     if (result.count("version")) {
       verMsg();
-      return EXIT_SUCCESS;
+      return EXIT_NOERROR;
     }
     if (result.count("license")) {
       licenseMsg();
-      return EXIT_SUCCESS;
+      return EXIT_NOERROR;
     }
   } catch (cxxopts::exceptions::no_such_option &e) {
     std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: Unknown option provided. " << e.what() << "\n";
     return EXIT_INVALID_ARGUMENT;
   }
 
-  return EXIT_SUCCESS;
+  return EXIT_NOERROR;
 }
 
 // Displaying version
