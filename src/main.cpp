@@ -18,7 +18,7 @@
 
 #include "cxxopts/cxxopts.hpp"
 
-constexpr std::string_view VERSION = "0.1.1";
+constexpr std::string_view VERSION = "0.1.2";
 
 constexpr int EXIT_MISSING_ARGUMENT = 3;
 constexpr int EXIT_INVALID_ARGUMENT = 4;
@@ -73,6 +73,7 @@ int main(int argc, char *argv[]) {
       storage::saveDatafile(category, value);
     }
     if (result.count("list")) {
+			checkFiles();
       std::cout << storage::readDatafile();
     }
     if (result.count("reset")) {
