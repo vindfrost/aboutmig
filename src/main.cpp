@@ -121,14 +121,16 @@ void checkFiles() {
   }
 }
 
+  auto isOnlyWhitespace = [](const std::string &s) {
+    return std::all_of(s.begin(), s.end(), isspace);
+  };
+
+
 // Getting the category
 std::string getCategory() {
   std::string category;
   std::cout << "Enter category: ";
   std::getline(std::cin, category);
-  auto isOnlyWhitespace = [](const std::string &s) {
-    return std::all_of(s.begin(), s.end(), isspace);
-  };
   if (category.empty() || isOnlyWhitespace(category)) {
     std::cerr << "Category cannot be empty.\n";
     exit(EXIT_EMPTY_INPUT);
@@ -141,9 +143,6 @@ std::string getValue() {
   std::string value;
   std::cout << "Enter value: ";
   std::getline(std::cin, value);
-  auto isOnlyWhitespace = [](const std::string &s) {
-    return std::all_of(s.begin(), s.end(), isspace);
-  };
   if (value.empty() || isOnlyWhitespace(value)) {
     std::cerr << "Value cannot be empty.\n";
     exit(EXIT_EMPTY_INPUT);
