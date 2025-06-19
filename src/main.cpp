@@ -19,7 +19,7 @@
 
 #include "cxxopts/cxxopts.hpp"
 
-constexpr std::string_view VERSION = "0.1.2";
+constexpr std::string_view VERSION = "0.1.3";
 
 constexpr int EXIT_MISSING_ARGUMENT = 3;
 constexpr int EXIT_INVALID_ARGUMENT = 4;
