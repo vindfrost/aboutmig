@@ -35,8 +35,9 @@ int main(int argc, char *argv[])
   // ANSI escape codes
   const std::string ANSI_bold_yellow = "\033[1;33m";
   const std::string ANSI_reset = "\033[0m";
-
+try {
 	cxxopts::Options options("aboutmig", "Cross-platform software to add information about yourself. Version " + std::string(VERSION));
+
 
 	options.add_options()
 		("h,help", "Print helper text.")
@@ -83,13 +84,15 @@ int main(int argc, char *argv[])
 		licenseMsg();
 		return EXIT_SUCCESS;
 	}
+} catch (cxxopts::exceptions::no_such_option& e) {
+	std::cerr << "Error: Unknown option provided. " << e.what() << "\n";
+	return EXIT_INVALID_ARGUMENT;
+}
+	if (argc == 1) {
+		std::cerr << "Error: No arguments provided.\n";
+		return EXIT_MISSING_ARGUMENT;
+	}
 
-/*
-
-  std::cerr << "No arguments provided.\n";
-  std::cout << "More info with \"aboutmig -h\".\n";
-  return EXIT_MISSING_ARGUMENT;
-	*/
 	return EXIT_SUCCESS;
 }
 
