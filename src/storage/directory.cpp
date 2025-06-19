@@ -18,8 +18,7 @@ namespace fs = std::filesystem;
 
 namespace storage {
 // Getting the location for the data directory
-std::string getStorageDir()
-{
+std::string getStorageDir() {
   const std::string home = std::getenv("HOME");
   std::string path = home + "/.local/share/aboutmig";
 
@@ -27,20 +26,17 @@ std::string getStorageDir()
 }
 
 // Checking if the data directory exists
-bool checkForStorageDir()
-{
+bool checkForStorageDir() {
   std::string storageDir = getStorageDir();
   if (fs::exists(storageDir) && fs::is_directory(storageDir)) {
     return true;
-  }
-  else {
+  } else {
     return false;
   }
 }
 
 // Creating the data directory
-void createStorageDir()
-{
+void createStorageDir() {
   fs::create_directory(getStorageDir());
 }
 

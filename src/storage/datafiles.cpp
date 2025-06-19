@@ -23,27 +23,23 @@ using json = nlohmann::json;
 namespace storage {
 
 // Getting the path of the datafile
-std::string getDatafile()
-{
+std::string getDatafile() {
   std::string filePath = storage::getStorageDir() + "/data.jsonc";
   return filePath;
 }
 
 // Checking if datafile exists
-bool checkForDatafile()
-{
+bool checkForDatafile() {
   std::string filePath = storage::getDatafile();
   if (fs::exists(filePath) && fs::is_regular_file(filePath)) {
     return true;
-  }
-  else {
+  } else {
     return false;
   }
 }
 
 // Creating datafile
-void createDatafile()
-{
+void createDatafile() {
   std::string filePath = storage::getDatafile();
   std::ofstream outFile(filePath);
   outFile << "[]\n";  // Initialize with an empty JSON array
@@ -51,8 +47,7 @@ void createDatafile()
 }
 
 // Saving data to the datafile
-void saveDatafile(std::string category, std::string value)
-{
+void saveDatafile(std::string category, std::string value) {
   std::string filePath = storage::getDatafile();
   json datafileObject;
 
@@ -61,13 +56,11 @@ void saveDatafile(std::string category, std::string value)
   if (datafileIn && datafileIn.peek() != std::ifstream::traits_type::eof()) {
     try {
       datafileIn >> datafileObject;
-    }
-    catch (const json::parse_error &e) {
+    } catch (const json::parse_error &e) {
       datafileObject =
         json::array();  // fallback json array if smth goes wrong (which should never happen)
     }
-  }
-  else {
+  } else {
     datafileObject = json::array();
   }
   datafileIn.close();
@@ -82,8 +75,7 @@ void saveDatafile(std::string category, std::string value)
 }
 
 // Reads the datafile
-std::string readDatafile()
-{
+std::string readDatafile() {
   std::string filePath = storage::getDatafile();
   std::string processedData;
   std::ifstream inFile(filePath);
@@ -107,8 +99,7 @@ std::string readDatafile()
   return processedData;
 }
 
-void deleteDatafile()
-{
+void deleteDatafile() {
   std::string filePath = storage::getDatafile();
 
   std::remove(filePath.c_str());
