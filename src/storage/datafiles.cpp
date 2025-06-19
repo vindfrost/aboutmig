@@ -14,8 +14,11 @@
 #include <iostream>
 #include <string>
 
-#include "nlohmann/json.hpp"
+#include "colorcodes.h"
+#include "storage/datafiles.h"
 #include "storage/directory.h"
+
+#include "nlohmann/json.hpp"
 
 namespace fs = std::filesystem;
 using json = nlohmann::json;
@@ -92,7 +95,7 @@ std::string readDatafile() {
         // Append the latest entry to the proccessed data entry
         std::string key = it.key();
         std::transform(key.begin(), key.end(), key.begin(), ::toupper);
-        processedData += "\033[1;33m" + key + "\033[0m: " + it.value().get<std::string>() + '\n';
+        processedData += colorcodes::yellow + key + colorcodes::reset + it.value().get<std::string>() + '\n';
       }
     }
   }

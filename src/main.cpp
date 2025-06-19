@@ -13,6 +13,7 @@
 #include <iostream>
 #include <string>
 
+#include "colorcodes.h"
 #include "storage/datafiles.h"
 #include "storage/directory.h"
 
@@ -31,9 +32,6 @@ std::string getCategory();
 std::string getValue();
 
 int main(int argc, char *argv[]) {
-  // ANSI escape codes
-  const std::string ANSI_bold_yellow = "\033[1;33m";
-  const std::string ANSI_reset = "\033[0m";
 
   if (argc == 1) {
     std::cerr << "Error: No arguments provided.\n";
@@ -67,7 +65,7 @@ int main(int argc, char *argv[]) {
       value = getValue();
 
       std::cout << "\nYou entered:\n"
-                << ANSI_bold_yellow << "[" << category << "]" << ANSI_reset << ": " << value
+                << colorcodes::yellow << "[" << category << "]" << colorcodes::reset << ": " << value
                 << "\n";
 
       storage::saveDatafile(category, value);
