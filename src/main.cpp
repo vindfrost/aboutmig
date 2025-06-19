@@ -28,8 +28,8 @@ constexpr int EXIT_EMPTY_INPUT = 5;
 void verMsg();
 void licenseMsg();
 void checkFiles();
-std::string getCategory();
-std::string getValue();
+std::string getInput(const std::string & prompt);
+static bool isOnlyWhitespace(const std::string& s);
 
 int main(int argc, char *argv[]) {
 
@@ -60,9 +60,9 @@ int main(int argc, char *argv[]) {
       std::string category;
       std::string value;
 
-      category = getCategory();
+      category = getInput("Enter category: ");
       std::transform(category.begin(), category.end(), category.begin(), ::toupper);
-      value = getValue();
+      value = getInput("Enter value: ");
 
       std::cout << "\nYou entered:\n"
                 << colorcodes::fgYellow << "[" << category << "]" << colorcodes::reset << ": " << value
@@ -119,31 +119,17 @@ void checkFiles() {
   }
 }
 
-  auto isOnlyWhitespace = [](const std::string &s) {
-    return std::all_of(s.begin(), s.end(), isspace);
-  };
-
-
-// Getting the category
-std::string getCategory() {
-  std::string category;
-  std::cout << "Enter category: ";
-  std::getline(std::cin, category);
-  if (category.empty() || isOnlyWhitespace(category)) {
-    std::cerr << "Category cannot be empty.\n";
-    exit(EXIT_EMPTY_INPUT);
-  }
-  return category;
+static bool isOnlyWhitespace(const std::string& s) {
+	return std::all_of(s.begin(), s.end(), isspace);	
 }
 
-// Getting the value
-std::string getValue() {
-  std::string value;
-  std::cout << "Enter value: ";
-  std::getline(std::cin, value);
-  if (value.empty() || isOnlyWhitespace(value)) {
-    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Value cannot be empty.\n" << colorcodes::reset;
-    exit(EXIT_EMPTY_INPUT);
-  }
-  return value;
+std::string getInput(const std::string& prompt) {
+	std::string input;
+	std::cout << prompt;
+	std::getline(std::cin, input);
+	if (input.empty() || isOnlyWhitespace(input)) {
+		std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Input cannot be empty.\n" << colorcodes::reset;
+		exit(EXIT_EMPTY_INPUT);
+	}
+	return input;
 }
