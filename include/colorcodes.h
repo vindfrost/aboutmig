@@ -14,7 +14,7 @@
 
 #include <string>
 
-namespace colorcode{
+namespace colorcodes {
 // Basic colors
 const std::string black					= "\x1b[30m";
 const std::string red						= "\x1b[31m";
@@ -36,6 +36,6 @@ const std::string brightCyan    = "\x1b[96m";
 const std::string brightWhite   = "\x1b[97m";
 
 // Reset
-const std::string Reset					= "\x1b[0m";
+const std::string reset					= "\x1b[0m";
 }
 #endif
