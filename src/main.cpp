@@ -35,6 +35,12 @@ int main(int argc, char *argv[])
   // ANSI escape codes
   const std::string ANSI_bold_yellow = "\033[1;33m";
   const std::string ANSI_reset = "\033[0m";
+
+	if (argc == 1) {
+		std::cerr << "Error: No arguments provided.\n";
+		return EXIT_MISSING_ARGUMENT;
+	}
+
 try {
 	cxxopts::Options options("aboutmig", "Cross-platform software to add information about yourself. Version " + std::string(VERSION));
 
@@ -88,10 +94,6 @@ try {
 	std::cerr << "Error: Unknown option provided. " << e.what() << "\n";
 	return EXIT_INVALID_ARGUMENT;
 }
-	if (argc == 1) {
-		std::cerr << "Error: No arguments provided.\n";
-		return EXIT_MISSING_ARGUMENT;
-	}
 
 	return EXIT_SUCCESS;
 }
