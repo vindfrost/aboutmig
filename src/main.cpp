@@ -1,12 +1,14 @@
-/* ------------------------------------------------
- * Location: 					src/main.cpp
- * Purpose:						Main source file
- * Author:						Raphael G. Grubbauer
- * Created:						03.06.2025
- * Copyright:					(c) 2025 Raphael G. Grubbauer
- * License:						MIT
- * ------------------------------------------------
- */
+/*==============================================================================
+ * File:        main.cpp
+ * Path:        src/
+ * Purpose:     Application entry point
+ * 
+ * Author:      Raphael G. Grubbauer
+ * Created:     2025-06-03
+ * License:     MIT License
+ * Copyright:   (c) 2025 Raphael G. Grubbauer
+ *============================================================================*/
+
 
 #include <algorithm>
 #include <iostream>

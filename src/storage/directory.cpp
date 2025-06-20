@@ -1,13 +1,14 @@
-/* ------------------------------------------------
- * Location: 					src/storage/directory.cpp
- * Purpose:						Source file for folder
-                      related storage code.
- * Author:						Raphael G. Grubbauer
- * Created:						07.06.2025
- * Copyright:					(c) 2025 Raphael G. Grubbauer
- * License:						MIT
- * ------------------------------------------------
-*/
+/*==============================================================================
+ * File:        directory.cpp
+ * Path:        src/storage/
+ * Purpose:     Handles folder-related storage functionality
+ * 
+ * Author:      Raphael G. Grubbauer
+ * Created:     2025-06-07
+ * License:     MIT License
+ * Copyright:   (c) 2025 Raphael G. Grubbauer
+ *============================================================================*/
+
 
 #include <filesystem>
 #include <string>

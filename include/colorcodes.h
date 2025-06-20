@@ -1,13 +1,13 @@
-/* ------------------------------------------------
- * Location: 					include/colorcodes.h
- * Purpose:						Storage of ISO/IEC 6429
- *										codes
- * Author:						Raphael G. Grubbauer
- * Created:						19.06.2025
- * Copyright:					(c) 2025 Raphael G. Grubbauer
- * License:						MIT
- * ------------------------------------------------
- */
+/*==============================================================================
+ * File:        colorcodes.h
+ * Path:        include/
+ * Purpose:     Storage of ISO/IEC 6429 escape code sequences
+ * 
+ * Author:      Raphael G. Grubbauer
+ * Created:     2025-06-19
+ * License:     MIT License
+ * Copyright:   (c) 2025 Raphael G. Grubbauer
+ *============================================================================*/
 
 #ifndef __COLORCODES_H
 #define __COLORCODES_H
