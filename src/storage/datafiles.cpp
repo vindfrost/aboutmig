@@ -33,12 +33,7 @@ std::string getDatafile() {
 
 // Checking if datafile exists
 bool checkForDatafile() {
-  std::string filePath = getDatafile();
-  if (fs::exists(filePath) && fs::is_regular_file(filePath)) {
-    return true;
-  } else {
-    return false;
-  }
+	return fs::is_regular_file(getDatafile());
 }
 
 // Creating datafile
