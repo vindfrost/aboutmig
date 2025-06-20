@@ -30,7 +30,6 @@ void verMsg();
 void licenseMsg();
 void ensureStorageFilesExist();
 std::string getInput(const std::string &prompt);
-static bool isOnlyWhitespace(const std::string &s);
 
 enum ExitCode {
   EXIT_NOERROR = 0,
@@ -95,7 +94,8 @@ int main(int argc, char *argv[]) {
               << e.what() << "\n";
     return EXIT_INVALID_ARGUMENT;
   } catch (const std::invalid_argument& e) {
-		std::cerr << colorcodes::bgRed << colorcodes::fgBlack << e.what() << "\n" << colorcodes::reset;	
+		std::cerr << colorcodes::bgRed << colorcodes::fgBlack << e.what() << "\n" << colorcodes::reset;
+		return EXIT_EMPTY_INPUT;
 	}
 
   return EXIT_NOERROR;
@@ -126,16 +126,15 @@ void ensureStorageFilesExist() {
   }
 }
 
-static bool isOnlyWhitespace(const std::string &s) {
-  return std::all_of(s.begin(), s.end(), isspace);
-}
-
 std::string getInput(const std::string &prompt) {
   std::string input;
   std::cout << prompt;
   std::getline(std::cin, input);
+  auto isOnlyWhitespace = [](const std::string &s) {
+    return std::all_of(s.begin(), s.end(), isspace);
+  };
   if (input.empty() || isOnlyWhitespace(input)) {
-		throw std::invalid_argument("Input cannot be empty or whitespace.");
+    throw std::invalid_argument("Input cannot be empty or whitespace.");
   }
   return input;
 }
