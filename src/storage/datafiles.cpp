@@ -45,6 +45,9 @@ bool checkForDatafile() {
 void createDatafile() {
   std::string filePath = storage::getDatafile();
   std::ofstream outFile(filePath);
+	if (!outFile) {
+  throw std::runtime_error("Failed to create datafile: " + filePath);
+	} 
   outFile << "[]\n";  // Initialize with an empty JSON array
   outFile.close();
 }
