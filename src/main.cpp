@@ -18,7 +18,7 @@
 
 #include "cxxopts/cxxopts.hpp"
 
-constexpr std::string_view VERSION = "0.1.4";
+constexpr std::string_view VERSION = "0.1.5";
 
 struct LicenseInfo {
 	std::string name;
