@@ -107,8 +107,6 @@ std::string readDatafile() {
 
 void deleteDatafile() {
   std::string filePath = getDatafile();
-
   std::remove(filePath.c_str());
 }
-
 }
