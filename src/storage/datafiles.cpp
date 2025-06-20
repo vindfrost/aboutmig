@@ -86,7 +86,7 @@ std::string readDatafile() {
   inFile >> data;
   inFile.close();
 
-  // Parsing for every value in the json object
+  // Parsing each entry in the JSON array
   for (const auto &item : data) {
     if (item.is_object()) {
       for (auto it = item.begin(); it != item.end(); ++it) {
