@@ -23,7 +23,7 @@ constexpr std::string_view VERSION = "0.1.4";
 
 void verMsg();
 void licenseMsg();
-void checkFiles();
+void ensureStorageFilesExist();
 std::string getInput(const std::string &prompt);
 static bool isOnlyWhitespace(const std::string &s);
 
@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
       return EXIT_NOERROR;
     }
     if (result.count("add")) {
-      checkFiles();
+      ensureStorageFilesExist();
 
       std::string category = getInput("Enter category: ");
       std::transform(category.begin(), category.end(), category.begin(), ::toupper);
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
       storage::saveDatafile(category, value);
     }
     if (result.count("list")) {
-      checkFiles();
+      ensureStorageFilesExist();
       std::cout << storage::readDatafile();
     }
     if (result.count("reset")) {
@@ -112,7 +112,7 @@ void licenseMsg() {
   std::cout << "https://github.com/jarro2783/cxxopts/\n";
 }
 
-void checkFiles() {
+void ensureStorageFilesExist() {
   if (storage::checkForStorageDir() == false) {
     storage::createStorageDir();
   }
