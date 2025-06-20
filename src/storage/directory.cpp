@@ -32,17 +32,11 @@ const std::string home = homeEnv;
 
 // Checking if the data directory exists
 bool checkForStorageDir() {
-  std::string storageDir = getStorageDir();
-  if (fs::exists(storageDir) && fs::is_directory(storageDir)) {
-    return true;
-  } else {
-    return false;
-  }
+	return fs::is_directory(getStorageDir());
 }
 
 // Creating the data directory
 void createStorageDir() {
-  fs::create_directory(getStorageDir());
+	fs::create_directories(getStorageDir());
 }
-
 }
