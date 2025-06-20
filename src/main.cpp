@@ -20,6 +20,12 @@
 
 constexpr std::string_view VERSION = "0.1.4";
 
+struct LicenseInfo {
+	std::string name;
+	std::string license;
+	std::string url;
+};
+
 void verMsg();
 void licenseMsg();
 void ensureStorageFilesExist();
@@ -100,15 +106,15 @@ void verMsg() {
   std::cout << "AboutMig " << VERSION << "\n";
 }
 
-void licenseMsg() {
-  std::cout
-    << "This project uses the 'nlohmann' JSON library, which is licensed under the MIT license.\n";
-  std::cout << "More information about the library can be found at:\n";
-  std::cout << "https://github.com/nlohmann/json/\n\n";
+const std::vector<LicenseInfo> licenses = {
+	{"nlohmann JSON", "MIT", "https://github.com/nlohmann/json/"},
+	{"cxxopts", "MIT", "https://github.com/jarro2783/cxxopts/"}
+};
 
-  std::cout << "This project uses the 'cxxopts' header, which is licensed under the MIT license.\n";
-  std::cout << "More information about the header can be found at:\n";
-  std::cout << "https://github.com/jarro2783/cxxopts/\n";
+void licenseMsg() {
+	for (const auto& lib : licenses) {
+		std::cout << "This project uses the '" << colorcodes::fgGreen << lib.name << colorcodes::reset << "' library, licensed under the " << colorcodes::fgGreen << lib.license << colorcodes::reset << " license.\nMore information: " << colorcodes::fgBlue << lib.url << colorcodes::reset << "\n\n";
+	}
 }
 
 void ensureStorageFilesExist() {
