@@ -1,13 +1,14 @@
-/* ------------------------------------------------
- * Location: 					src/storage/directory.cpp
- * Purpose:						Source file for folder
-                      related storage code.
- * Author:						Raphael G. Grubbauer
- * Created:						07.06.2025
- * Copyright:					(c) 2025 Raphael G. Grubbauer
- * License:						MIT
- * ------------------------------------------------
-*/
+/*==============================================================================
+ * File:        directory.cpp
+ * Path:        src/storage/
+ * Purpose:     Handles folder-related storage functionality
+ * 
+ * Author:      Raphael G. Grubbauer
+ * Created:     2025-06-07
+ * License:     MIT License
+ * Copyright:   (c) 2025 Raphael G. Grubbauer
+ *============================================================================*/
+
 
 #include <filesystem>
 #include <string>
@@ -19,7 +20,12 @@ namespace fs = std::filesystem;
 namespace storage {
 // Getting the location for the data directory
 std::string getStorageDir() {
-  const std::string home = std::getenv("HOME");
+	const char* homeEnv = std::getenv("HOME");
+if (!homeEnv) {
+  throw std::runtime_error("HOME environment variable not set.");
+}
+const std::string home = homeEnv;
+
   std::string path = home + "/.local/share/aboutmig";
 
   return path;
@@ -27,17 +33,11 @@ std::string getStorageDir() {
 
 // Checking if the data directory exists
 bool checkForStorageDir() {
-  std::string storageDir = getStorageDir();
-  if (fs::exists(storageDir) && fs::is_directory(storageDir)) {
-    return true;
-  } else {
-    return false;
-  }
+	return fs::is_directory(getStorageDir());
 }
 
 // Creating the data directory
 void createStorageDir() {
-  fs::create_directory(getStorageDir());
+	fs::create_directories(getStorageDir());
 }
-
 }

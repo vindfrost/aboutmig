@@ -1,13 +1,13 @@
-/* ------------------------------------------------
- * Location: 					src/storage/directory.h
- * Purpose:						Header file for folder
-                      related storage code.
- * Author:						Raphael G. Grubbauer
- * Created:						07.06.2025
- * Copyright:					(c) 2025 Raphael G. Grubbauer
- * License:						MIT
- * ------------------------------------------------
-*/
+/*==============================================================================
+ * File:        directory.h
+ * Path:        include/storage/
+ * Purpose:     Header file for folder-related storage code
+ * 
+ * Author:      Raphael G. Grubbauer
+ * Created:     2025-06-07
+ * License:     MIT License
+ * Copyright:   (c) 2025 Raphael G. Grubbauer
+ *============================================================================*/
 
 #ifndef __STORAGE_DIRECTORY_H
 #define __STORAGE_DIRECTORY_H

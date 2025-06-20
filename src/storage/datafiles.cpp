@@ -1,13 +1,14 @@
-/* ------------------------------------------------
- * Location: 					src/storage/datafiles.cpp
- * Purpose:						Source file for datafiles
-                      related storage code.
- * Author:						Raphael G. Grubbauer
- * Created:						07.06.2025
- * Copyright:					(c) 2025 Raphael G. Grubbauer
- * License:						MIT
- * ------------------------------------------------
-*/
+/*==============================================================================
+ * File:        datafiles.cpp
+ * Path:        src/storage/
+ * Purpose:     Handles datafile-related storage functionality
+ * 
+ * Author:      Raphael G. Grubbauer
+ * Created:     2025-06-07
+ * License:     MIT License
+ * Copyright:   (c) 2025 Raphael G. Grubbauer
+ *============================================================================*/
+
 #include <cstdio>
 #include <filesystem>
 #include <fstream>
@@ -27,31 +28,29 @@ namespace storage {
 
 // Getting the path of the datafile
 std::string getDatafile() {
-  std::string filePath = storage::getStorageDir() + "/data.jsonc";
+  std::string filePath = getStorageDir() + "/data.json";
   return filePath;
 }
 
 // Checking if datafile exists
 bool checkForDatafile() {
-  std::string filePath = storage::getDatafile();
-  if (fs::exists(filePath) && fs::is_regular_file(filePath)) {
-    return true;
-  } else {
-    return false;
-  }
+	return fs::is_regular_file(getDatafile());
 }
 
 // Creating datafile
 void createDatafile() {
-  std::string filePath = storage::getDatafile();
+  std::string filePath = getDatafile();
   std::ofstream outFile(filePath);
+	if (!outFile) {
+		throw std::runtime_error("Failed to create datafile: " + filePath);
+	} 
   outFile << "[]\n";  // Initialize with an empty JSON array
   outFile.close();
 }
 
 // Saving data to the datafile
 void saveDatafile(std::string category, std::string value) {
-  std::string filePath = storage::getDatafile();
+  std::string filePath = getDatafile();
   json datafileObject;
 
   // Opening the input file
@@ -79,7 +78,7 @@ void saveDatafile(std::string category, std::string value) {
 
 // Reads the datafile
 std::string readDatafile() {
-  std::string filePath = storage::getDatafile();
+  std::string filePath = getDatafile();
   std::string processedData;
   std::ifstream inFile(filePath);
 
@@ -88,14 +87,16 @@ std::string readDatafile() {
   inFile >> data;
   inFile.close();
 
-  // Parsing for every value in the json object
+  // Parsing each entry in the JSON array
   for (const auto &item : data) {
     if (item.is_object()) {
       for (auto it = item.begin(); it != item.end(); ++it) {
         // Append the latest entry to the proccessed data entry
         std::string key = it.key();
-        std::transform(key.begin(), key.end(), key.begin(), ::toupper);
-        processedData += colorcodes::fgYellow + key + colorcodes::reset + ":" + it.value().get<std::string>() + '\n';
+				processedData +=
+    std::string(colorcodes::fg::yellow) + key + std::string(colorcodes::reset) + ":" +
+    it.value().get<std::string>() + '\n';
+
       }
     }
   }
@@ -103,9 +104,7 @@ std::string readDatafile() {
 }
 
 void deleteDatafile() {
-  std::string filePath = storage::getDatafile();
-
+  std::string filePath = getDatafile();
   std::remove(filePath.c_str());
 }
-
 }
