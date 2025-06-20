@@ -24,20 +24,20 @@ constexpr std::string_view VERSION = "0.1.4";
 void verMsg();
 void licenseMsg();
 void checkFiles();
-std::string getInput(const std::string & prompt);
-static bool isOnlyWhitespace(const std::string& s);
+std::string getInput(const std::string &prompt);
+static bool isOnlyWhitespace(const std::string &s);
 
 enum ExitCode {
-	EXIT_NOERROR= 1,
-	EXIT_MISSING_ARGUMENT = 3,
-	EXIT_INVALID_ARGUMENT = 4,
-	EXIT_EMPTY_INPUT = 5,
+  EXIT_NOERROR = 1,
+  EXIT_MISSING_ARGUMENT = 3,
+  EXIT_INVALID_ARGUMENT = 4,
+  EXIT_EMPTY_INPUT = 5,
 };
 
 int main(int argc, char *argv[]) {
-
   if (argc == 1) {
-    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: No arguments provided.\n" << colorcodes::reset;
+    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: No arguments provided.\n"
+              << colorcodes::reset;
     return EXIT_MISSING_ARGUMENT;
   }
 
@@ -59,18 +59,18 @@ int main(int argc, char *argv[]) {
     if (result.count("add")) {
       checkFiles();
 
-			std::string category = getInput("Enter category: ");
+      std::string category = getInput("Enter category: ");
       std::transform(category.begin(), category.end(), category.begin(), ::toupper);
-			std::string value = getInput("Enter value: ");
+      std::string value = getInput("Enter value: ");
 
       std::cout << "\nYou entered:\n"
-                << colorcodes::fgYellow << "[" << category << "]" << colorcodes::reset << ": " << value
-                << "\n";
+                << colorcodes::fgYellow << "[" << category << "]" << colorcodes::reset << ": "
+                << value << "\n";
 
       storage::saveDatafile(category, value);
     }
     if (result.count("list")) {
-			checkFiles();
+      checkFiles();
       std::cout << storage::readDatafile();
     }
     if (result.count("reset")) {
@@ -86,7 +86,8 @@ int main(int argc, char *argv[]) {
       return EXIT_NOERROR;
     }
   } catch (cxxopts::exceptions::no_such_option &e) {
-    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: Unknown option provided. " << e.what() << "\n";
+    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: Unknown option provided. "
+              << e.what() << "\n";
     return EXIT_INVALID_ARGUMENT;
   }
 
@@ -118,17 +119,18 @@ void checkFiles() {
   }
 }
 
-static bool isOnlyWhitespace(const std::string& s) {
-	return std::all_of(s.begin(), s.end(), isspace);	
+static bool isOnlyWhitespace(const std::string &s) {
+  return std::all_of(s.begin(), s.end(), isspace);
 }
 
-std::string getInput(const std::string& prompt) {
-	std::string input;
-	std::cout << prompt;
-	std::getline(std::cin, input);
-	if (input.empty() || isOnlyWhitespace(input)) {
-		std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Input cannot be empty.\n" << colorcodes::reset;
-		exit(EXIT_EMPTY_INPUT);
-	}
-	return input;
+std::string getInput(const std::string &prompt) {
+  std::string input;
+  std::cout << prompt;
+  std::getline(std::cin, input);
+  if (input.empty() || isOnlyWhitespace(input)) {
+    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Input cannot be empty.\n"
+              << colorcodes::reset;
+    exit(EXIT_EMPTY_INPUT);
+  }
+  return input;
 }
