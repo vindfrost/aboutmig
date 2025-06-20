@@ -27,7 +27,7 @@ namespace storage {
 
 // Getting the path of the datafile
 std::string getDatafile() {
-  std::string filePath = storage::getStorageDir() + "/data.jsonc";
+  std::string filePath = storage::getStorageDir() + "/data.json";
   return filePath;
 }
 
