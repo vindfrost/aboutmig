@@ -13,9 +13,12 @@ set(CMAKE_REQUIRED_INCLUDES ${CMAKE_SOURCE_DIR}/include)
 
 # Standard library checks
 check_include_files("filesystem" HAVE_FILESYSTEM_H)
+check_include_files("fstream" HAVE_FSTREAM_H)
 check_include_files("iostream" HAVE_IOSTREAM_H)
 check_include_files("string" HAVE_STRING_H)
-check_include_files("cstdlib" HAVE_CSTDLIB_H)
+check_include_files("cstdio" HAVE_CSTDIO_H)
+check_include_files("string_view" HAVE_STRING_VIEW_H)
+check_include_files("algorithm" HAVE_ALGORITHM_H)
 
 # JSON library check
 check_include_files("nlohmann/json.hpp" HAVE_NLOHMANN_JSON_H)
