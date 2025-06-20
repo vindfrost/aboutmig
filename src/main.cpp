@@ -79,6 +79,12 @@ int main(int argc, char *argv[]) {
       std::cout << storage::readDatafile();
     }
     if (result.count("reset")) {
+			std::string confirm = getInput("Are you sure you want to delete the datafile? [y/N]: ");
+			if (confirm != "y" && confirm != "Y") {
+				std::cout << "Aborted.\n";
+				return EXIT_NOERROR;
+			}
+
       storage::deleteDatafile();
       std::cout << colorcodes::fgBrightGreen << "Deleted datafile.\n" << colorcodes::reset;
     }
