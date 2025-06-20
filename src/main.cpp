@@ -33,7 +33,7 @@ std::string getInput(const std::string &prompt);
 static bool isOnlyWhitespace(const std::string &s);
 
 enum ExitCode {
-  EXIT_NOERROR = 1,
+  EXIT_NOERROR = 0,
   EXIT_MISSING_ARGUMENT = 3,
   EXIT_INVALID_ARGUMENT = 4,
   EXIT_EMPTY_INPUT = 5,
