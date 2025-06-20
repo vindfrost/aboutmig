@@ -89,7 +89,9 @@ int main(int argc, char *argv[]) {
     std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: Unknown option provided. "
               << e.what() << "\n";
     return EXIT_INVALID_ARGUMENT;
-  }
+  } catch (const std::invalid_argument& e) {
+		std::cerr << colorcodes::bgRed << colorcodes::fgBlack << e.what() << "\n" << colorcodes::reset;	
+	}
 
   return EXIT_NOERROR;
 }
@@ -128,9 +130,7 @@ std::string getInput(const std::string &prompt) {
   std::cout << prompt;
   std::getline(std::cin, input);
   if (input.empty() || isOnlyWhitespace(input)) {
-    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Input cannot be empty.\n"
-              << colorcodes::reset;
-    exit(EXIT_EMPTY_INPUT);
+		throw std::invalid_argument("Input cannot be empty or whitespace.");
   }
   return input;
 }
