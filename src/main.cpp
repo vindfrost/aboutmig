@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
       "l,list", "List all currently stored information.")("r,reset", "Reset datafile.")(
       "L,license", "List all licenses.")("v,version", "Print version.");
 
-    auto result = options.parse(argc, argv);
+    const auto result = options.parse(argc, argv);
 
     if (result.count("help")) {
       std::cout << options.help() << "\n";
