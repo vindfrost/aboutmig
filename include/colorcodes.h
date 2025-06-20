@@ -12,51 +12,51 @@
 #ifndef __COLORCODES_H
 #define __COLORCODES_H
 
-#include <string>
+#include <string_view>
 
 namespace colorcodes {
 // Foreground colors (text)
-const std::string fgBlack = "\x1b[30m";
-const std::string fgRed = "\x1b[31m";
-const std::string fgGreen = "\x1b[32m";
-const std::string fgYellow = "\x1b[33m";
-const std::string fgBlue = "\x1b[34m";
-const std::string fgMagenta = "\x1b[35m";
-const std::string fgCyan = "\x1b[36m";
-const std::string fgWhite = "\x1b[37m";
+constexpr std::string_view fgBlack = "\x1b[30m";
+constexpr std::string_view fgRed = "\x1b[31m";
+constexpr std::string_view fgGreen = "\x1b[32m";
+constexpr std::string_view fgYellow = "\x1b[33m";
+constexpr std::string_view fgBlue = "\x1b[34m";
+constexpr std::string_view fgMagenta = "\x1b[35m";
+constexpr std::string_view fgCyan = "\x1b[36m";
+constexpr std::string_view fgWhite = "\x1b[37m";
 
 // Bright foreground colors
-const std::string fgBrightBlack = "\x1b[90m";
-const std::string fgBrightRed = "\x1b[91m";
-const std::string fgBrightGreen = "\x1b[92m";
-const std::string fgBrightYellow = "\x1b[93m";
-const std::string fgBrightBlue = "\x1b[94m";
-const std::string fgBrightMagenta = "\x1b[95m";
-const std::string fgBrightCyan = "\x1b[96m";
-const std::string fgBrightWhite = "\x1b[97m";
+constexpr std::string_view fgBrightBlack = "\x1b[90m";
+constexpr std::string_view fgBrightRed = "\x1b[91m";
+constexpr std::string_view fgBrightGreen = "\x1b[92m";
+constexpr std::string_view fgBrightYellow = "\x1b[93m";
+constexpr std::string_view fgBrightBlue = "\x1b[94m";
+constexpr std::string_view fgBrightMagenta = "\x1b[95m";
+constexpr std::string_view fgBrightCyan = "\x1b[96m";
+constexpr std::string_view fgBrightWhite = "\x1b[97m";
 
 // Background colors
-const std::string bgBlack = "\x1b[40m";
-const std::string bgRed = "\x1b[41m";
-const std::string bgGreen = "\x1b[42m";
-const std::string bgYellow = "\x1b[43m";
-const std::string bgBlue = "\x1b[44m";
-const std::string bgMagenta = "\x1b[45m";
-const std::string bgCyan = "\x1b[46m";
-const std::string bgWhite = "\x1b[47m";
+constexpr std::string_view bgBlack = "\x1b[40m";
+constexpr std::string_view bgRed = "\x1b[41m";
+constexpr std::string_view bgGreen = "\x1b[42m";
+constexpr std::string_view bgYellow = "\x1b[43m";
+constexpr std::string_view bgBlue = "\x1b[44m";
+constexpr std::string_view bgMagenta = "\x1b[45m";
+constexpr std::string_view bgCyan = "\x1b[46m";
+constexpr std::string_view bgWhite = "\x1b[47m";
 
 // Bright background colors
-const std::string bgBrightBlack = "\x1b[100m";
-const std::string bgBrightRed = "\x1b[101m";
-const std::string bgBrightGreen = "\x1b[102m";
-const std::string bgBrightYellow = "\x1b[103m";
-const std::string bgBrightBlue = "\x1b[104m";
-const std::string bgBrightMagenta = "\x1b[105m";
-const std::string bgBrightCyan = "\x1b[106m";
-const std::string bgBrightWhite = "\x1b[107m";
+constexpr std::string_view bgBrightBlack = "\x1b[100m";
+constexpr std::string_view bgBrightRed = "\x1b[101m";
+constexpr std::string_view bgBrightGreen = "\x1b[102m";
+constexpr std::string_view bgBrightYellow = "\x1b[103m";
+constexpr std::string_view bgBrightBlue = "\x1b[104m";
+constexpr std::string_view bgBrightMagenta = "\x1b[105m";
+constexpr std::string_view bgBrightCyan = "\x1b[106m";
+constexpr std::string_view bgBrightWhite = "\x1b[107m";
 
 // Reset
-const std::string reset = "\x1b[0m";
+constexpr std::string_view reset = "\x1b[0m";
 
 }
 #endif
