@@ -33,6 +33,7 @@ std::string getInput(const std::string &prompt);
 
 enum ExitCode {
   EXIT_NOERROR = 0,
+	EXIT_GENERALERROR = 1,
   EXIT_MISSING_ARGUMENT = 3,
   EXIT_INVALID_ARGUMENT = 4,
   EXIT_EMPTY_INPUT = 5,
@@ -96,6 +97,9 @@ int main(int argc, char *argv[]) {
   } catch (const std::invalid_argument& e) {
 		std::cerr << colorcodes::bgRed << colorcodes::fgBlack << e.what() << "\n" << colorcodes::reset;
 		return EXIT_EMPTY_INPUT;
+	} catch (const std::exception& e) {
+		std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Unexpected error: " << e.what() << "\n" << colorcodes::reset;
+		return EXIT_GENERALERROR;
 	}
 
   return EXIT_NOERROR;
