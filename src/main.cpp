@@ -41,7 +41,7 @@ enum ExitCode {
 
 int main(int argc, char *argv[]) {
   if (argc == 1) {
-    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: No arguments provided.\n"
+    std::cerr << colorcodes::bg::red << colorcodes::bg::black << "Error: No arguments provided.\n"
               << colorcodes::reset;
     return EXIT_MISSING_ARGUMENT;
   }
@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
       std::string value = getInput("Enter value: ");
 
       std::cout << "\nYou entered:\n"
-                << colorcodes::fgYellow << "[" << category << "]" << colorcodes::reset << ": "
+                << colorcodes::fg::yellow << "[" << category << "]" << colorcodes::reset << ": "
                 << value << "\n";
 
       storage::saveDatafile(category, value);
@@ -86,7 +86,7 @@ int main(int argc, char *argv[]) {
 			}
 
       storage::deleteDatafile();
-      std::cout << colorcodes::fgBrightGreen << "Deleted datafile.\n" << colorcodes::reset;
+      std::cout << colorcodes::bg::bright::green << "Deleted datafile.\n" << colorcodes::reset;
     }
     if (result.count("version")) {
       verMsg();
@@ -97,14 +97,14 @@ int main(int argc, char *argv[]) {
       return EXIT_NOERROR;
     }
   } catch (cxxopts::exceptions::no_such_option &e) {
-    std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Error: Unknown option provided. "
+    std::cerr << colorcodes::bg::red << colorcodes::bg::black << "Error: Unknown option provided. "
               << e.what() << "\n";
     return EXIT_INVALID_ARGUMENT;
   } catch (const std::invalid_argument& e) {
-		std::cerr << colorcodes::bgRed << colorcodes::fgBlack << e.what() << "\n" << colorcodes::reset;
+		std::cerr << colorcodes::bg::red << colorcodes::bg::black << e.what() << "\n" << colorcodes::reset;
 		return EXIT_EMPTY_INPUT;
 	} catch (const std::exception& e) {
-		std::cerr << colorcodes::bgRed << colorcodes::fgBlack << "Unexpected error: " << e.what() << "\n" << colorcodes::reset;
+		std::cerr << colorcodes::bg::red << colorcodes::bg::black << "Unexpected error: " << e.what() << "\n" << colorcodes::reset;
 		return EXIT_GENERALERROR;
 	}
 
@@ -123,7 +123,7 @@ const std::vector<LicenseInfo> licenses = {
 
 void licenseMsg() {
 	for (const auto& lib : licenses) {
-		std::cout << "This project uses the '" << colorcodes::fgGreen << lib.name << colorcodes::reset << "' library, licensed under the " << colorcodes::fgGreen << lib.license << colorcodes::reset << " license.\nMore information: " << colorcodes::fgBlue << lib.url << colorcodes::reset << "\n\n";
+		std::cout << "This project uses the '" << colorcodes::fg::green << lib.name << colorcodes::reset << "' library, licensed under the " << colorcodes::fg::green << lib.license << colorcodes::reset << " license.\nMore information: " << colorcodes::fg::blue << lib.url << colorcodes::reset << "\n\n";
 	}
 }
 
