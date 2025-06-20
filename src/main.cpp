@@ -20,7 +20,7 @@
 
 #include "cxxopts/cxxopts.hpp"
 
-constexpr std::string_view VERSION = "0.1.5";
+constexpr std::string_view VERSION = "0.1.6";
 
 struct LicenseInfo {
 	std::string name;
@@ -43,7 +43,7 @@ enum ExitCode {
 
 int main(int argc, char *argv[]) {
   if (argc == 1) {
-    std::cerr << colorcodes::bg::red << colorcodes::bg::black << "Error: No arguments provided.\n"
+    std::cerr << colorcodes::bg::red << "Error: No arguments provided.\n"
               << colorcodes::reset;
     return EXIT_MISSING_ARGUMENT;
   }
@@ -83,12 +83,12 @@ int main(int argc, char *argv[]) {
     if (result.count("reset")) {
 			std::string confirm = getInput("Are you sure you want to delete the datafile? [y/N]: ");
 			if (confirm != "y" && confirm != "Y") {
-				std::cout << "Aborted.\n";
+				std::cout << colorcodes::fg::magenta << "Aborted.\n" << colorcodes::reset;
 				return EXIT_NOERROR;
 			}
 
       storage::deleteDatafile();
-      std::cout << colorcodes::bg::bright::green << "Deleted datafile.\n" << colorcodes::reset;
+      std::cout << colorcodes::fg::bright::green << "Deleted datafile.\n" << colorcodes::reset;
     }
     if (result.count("version")) {
       verMsg();
@@ -99,14 +99,13 @@ int main(int argc, char *argv[]) {
       return EXIT_NOERROR;
     }
   } catch (cxxopts::exceptions::no_such_option &e) {
-    std::cerr << colorcodes::bg::red << colorcodes::bg::black << "Error: Unknown option provided. "
-              << e.what() << "\n";
+    std::cerr << colorcodes::bg::red << "Error: Unknown option provided. "<< e.what() << "\n";
     return EXIT_INVALID_ARGUMENT;
   } catch (const std::invalid_argument& e) {
-		std::cerr << colorcodes::bg::red << colorcodes::bg::black << e.what() << "\n" << colorcodes::reset;
+		std::cerr << colorcodes::bg::red << e.what() << "\n" << colorcodes::reset;
 		return EXIT_EMPTY_INPUT;
 	} catch (const std::exception& e) {
-		std::cerr << colorcodes::bg::red << colorcodes::bg::black << "Unexpected error: " << e.what() << "\n" << colorcodes::reset;
+		std::cerr << colorcodes::bg::red << "Unexpected error: " << e.what() << "\n" << colorcodes::reset;
 		return EXIT_GENERALERROR;
 	}
 
