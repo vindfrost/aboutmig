@@ -6,3 +6,4 @@ TODO*
 build/
 include/cxxopts
 include/nlohmann
+include/spdlog
