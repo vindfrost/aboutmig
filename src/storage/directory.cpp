@@ -5,7 +5,7 @@
  * 
  * Author:      Raphael G. Grubbauer
  * Created:     2025-06-07
- * License:     MIT License
+ * License:     MIT
  * Copyright:   (c) 2025 Raphael G. Grubbauer
  *============================================================================*/
 
