@@ -9,8 +9,7 @@
  * Copyright:   (c) 2025 Raphael G. Grubbauer
  *============================================================================*/
 
-#ifndef __STORAGE_DATAFILES_H
-#define __STORAGE_DATAFILES_H
+#pragma once
 
 #include <string>
 
@@ -28,5 +27,3 @@ std::string readDatafile();
 // Deleting datafile
 void deleteDatafile();
 }
-
-#endif

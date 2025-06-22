@@ -9,8 +9,7 @@
  * Copyright:   (c) 2025 Raphael G. Grubbauer
  *============================================================================*/
 
-#ifndef __COLORCODES_H
-#define __COLORCODES_H
+#pragma once
 
 #include <string_view>
 
@@ -66,4 +65,3 @@ constexpr std::string_view white = "\x1b[107m";
 constexpr std::string_view reset = "\x1b[0m";
 
 }
-#endif
