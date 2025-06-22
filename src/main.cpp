@@ -32,6 +32,7 @@ struct LicenseInfo {
 void verMsg();
 void licenseMsg();
 void ensureStorageFilesExist();
+std::string getLogDate();
 std::string getInput(const std::string &prompt);
 
 enum ExitCode {
@@ -43,12 +44,13 @@ enum ExitCode {
 };
 
 int main(int argc, char *argv[]) {
+
+
   if (argc == 1) {
     std::cerr << colorcodes::bg::red << "Error: No arguments provided.\n"
               << colorcodes::reset;
     return EXIT_MISSING_ARGUMENT;
   }
-
   try {
     cxxopts::Options options("aboutmig",
                              "Cross-platform software to add information about yourself. Version " +
