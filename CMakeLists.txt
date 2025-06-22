@@ -4,7 +4,10 @@ project(AboutMig
 				DESCRIPTION "Store info about yourself!"
 				LANGUAGES CXX)
 
-add_executable(aboutmig src/main.cpp src/storage/directory.cpp src/storage/datafiles.cpp)
+add_executable(aboutmig src/main.cpp
+												src/storage/directory.cpp
+												src/storage/datafiles.cpp
+												src/log.cpp)
 
 include(CheckIncludeFiles)
 include(CheckFunctionExists)
