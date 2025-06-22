@@ -19,6 +19,8 @@
 #include "storage/datafiles.h"
 #include "storage/directory.h"
 
+#include "log.h"
+
 #include "cxxopts/cxxopts.hpp"
 
 constexpr std::string_view VERSION = "0.1.7";
@@ -44,7 +46,8 @@ enum ExitCode {
 };
 
 int main(int argc, char *argv[]) {
-
+	// Gett the logger
+	auto logger = get_logger();
 
   if (argc == 1) {
     std::cerr << colorcodes::bg::red << "Error: No arguments provided.\n"
