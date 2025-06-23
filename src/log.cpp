@@ -33,7 +33,7 @@ std::string getLogDate() {
 std::shared_ptr<spdlog::logger> get_logger() {
     static std::shared_ptr<spdlog::logger> logger = [] {
         auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(storage::getStorageDir() + "/logs/log-" + getLogDate(), true);
-        auto logger = std::make_shared<spdlog::logger>("file_logger", file_sink);
+        auto logger = std::make_shared<spdlog::logger>("AboutMig", file_sink);
 
         logger->set_level(spdlog::level::trace);
         logger->flush_on(spdlog::level::trace);

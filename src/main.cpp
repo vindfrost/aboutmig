@@ -46,7 +46,7 @@ enum ExitCode {
 };
 
 int main(int argc, char *argv[]) {
-	// Gett the logger
+	// Get the logger
 	auto logger = get_logger();
 
   if (argc == 1) {
