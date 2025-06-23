@@ -2,7 +2,7 @@
  * File:        log.h
  * Path:        include/
  * Purpose:     Logger header for global logging
- * 
+ *
  * Author:      Raphael G. Grubbauer
  * Created:     2025-06-22
  * License:     MIT

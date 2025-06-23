@@ -2,7 +2,7 @@
  * File:        colorcodes.h
  * Path:        include/
  * Purpose:     Storage of ISO/IEC 6429 escape code sequences
- * 
+ *
  * Author:      Raphael G. Grubbauer
  * Created:     2025-06-19
  * License:     MIT
@@ -14,7 +14,7 @@
 #include <string_view>
 
 namespace colorcodes {
-	namespace fg {
+namespace fg {
 // Foreground colors (text)
 constexpr std::string_view black = "\x1b[30m";
 constexpr std::string_view red = "\x1b[31m";

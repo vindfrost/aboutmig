@@ -2,7 +2,7 @@
  * File:        datafiles.cpp
  * Path:        src/storage/
  * Purpose:     Handles datafile-related storage functionality
- * 
+ *
  * Author:      Raphael G. Grubbauer
  * Created:     2025-06-07
  * License:     MIT
@@ -35,16 +35,16 @@ std::string getDatafile() {
 
 // Checking if datafile exists
 bool checkForDatafile() {
-	return fs::is_regular_file(getDatafile());
+  return fs::is_regular_file(getDatafile());
 }
 
 // Creating datafile
 void createDatafile() {
   std::string filePath = getDatafile();
   std::ofstream outFile(filePath);
-	if (!outFile) {
-		throw std::runtime_error("Failed to create datafile: " + filePath);
-	} 
+  if (!outFile) {
+    throw std::runtime_error("Failed to create datafile: " + filePath);
+  }
   outFile << "[]\n";  // Initialize with an empty JSON array
   outFile.close();
 }
@@ -94,10 +94,9 @@ std::string readDatafile() {
       for (auto it = item.begin(); it != item.end(); ++it) {
         // Append the latest entry to the proccessed data entry
         std::string key = it.key();
-				processedData +=
-    std::string(colorcodes::fg::yellow) + key + std::string(colorcodes::reset) + ":" +
-    it.value().get<std::string>() + '\n';
-
+        processedData += std::string(colorcodes::fg::yellow) + key +
+                         std::string(colorcodes::reset) + ":" + it.value().get<std::string>() +
+                         '\n';
       }
     }
   }

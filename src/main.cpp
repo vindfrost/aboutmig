@@ -2,13 +2,12 @@
  * File:        main.cpp
  * Path:        src/
  * Purpose:     Application entry point
- * 
+ *
  * Author:      Raphael G. Grubbauer
  * Created:     2025-06-03
  * License:     MIT
  * Copyright:   (c) 2025 Raphael G. Grubbauer
  *============================================================================*/
-
 
 #include <algorithm>
 #include <iostream>
@@ -26,9 +25,9 @@
 constexpr std::string_view VERSION = "0.1.7";
 
 struct LicenseInfo {
-	std::string name;
-	std::string license;
-	std::string url;
+  std::string name;
+  std::string license;
+  std::string url;
 };
 
 void verMsg();
@@ -39,19 +38,18 @@ std::string getInput(const std::string &prompt);
 
 enum ExitCode {
   EXIT_NOERROR = 0,
-	EXIT_GENERALERROR = 1,
+  EXIT_GENERALERROR = 1,
   EXIT_MISSING_ARGUMENT = 3,
   EXIT_INVALID_ARGUMENT = 4,
   EXIT_EMPTY_INPUT = 5,
 };
 
 int main(int argc, char *argv[]) {
-	// Get the logger
-	auto logger = get_logger();
+  // Get the logger
+  auto logger = get_logger();
 
   if (argc == 1) {
-    std::cerr << colorcodes::bg::red << "Error: No arguments provided.\n"
-              << colorcodes::reset;
+    std::cerr << colorcodes::bg::red << "Error: No arguments provided.\n" << colorcodes::reset;
     return EXIT_MISSING_ARGUMENT;
   }
   try {
@@ -87,11 +85,11 @@ int main(int argc, char *argv[]) {
       std::cout << storage::readDatafile();
     }
     if (result.count("reset")) {
-			std::string confirm = getInput("Are you sure you want to delete the datafile? [y/N]: ");
-			if (confirm != "y" && confirm != "Y") {
-				std::cout << colorcodes::fg::magenta << "Aborted.\n" << colorcodes::reset;
-				return EXIT_NOERROR;
-			}
+      std::string confirm = getInput("Are you sure you want to delete the datafile? [y/N]: ");
+      if (confirm != "y" && confirm != "Y") {
+        std::cout << colorcodes::fg::magenta << "Aborted.\n" << colorcodes::reset;
+        return EXIT_NOERROR;
+      }
 
       storage::deleteDatafile();
       std::cout << colorcodes::fg::bright::green << "Deleted datafile.\n" << colorcodes::reset;
@@ -105,15 +103,16 @@ int main(int argc, char *argv[]) {
       return EXIT_NOERROR;
     }
   } catch (cxxopts::exceptions::no_such_option &e) {
-    std::cerr << colorcodes::bg::red << "Error: Unknown option provided. "<< e.what() << "\n";
+    std::cerr << colorcodes::bg::red << "Error: Unknown option provided. " << e.what() << "\n";
     return EXIT_INVALID_ARGUMENT;
-  } catch (const std::invalid_argument& e) {
-		std::cerr << colorcodes::bg::red << e.what() << "\n" << colorcodes::reset;
-		return EXIT_EMPTY_INPUT;
-	} catch (const std::exception& e) {
-		std::cerr << colorcodes::bg::red << "Unexpected error: " << e.what() << "\n" << colorcodes::reset;
-		return EXIT_GENERALERROR;
-	}
+  } catch (const std::invalid_argument &e) {
+    std::cerr << colorcodes::bg::red << e.what() << "\n" << colorcodes::reset;
+    return EXIT_EMPTY_INPUT;
+  } catch (const std::exception &e) {
+    std::cerr << colorcodes::bg::red << "Unexpected error: " << e.what() << "\n"
+              << colorcodes::reset;
+    return EXIT_GENERALERROR;
+  }
 
   return EXIT_NOERROR;
 }
@@ -124,14 +123,16 @@ void verMsg() {
 }
 
 const std::vector<LicenseInfo> licenses = {
-	{"nlohmann JSON", "MIT", "https://github.com/nlohmann/json/"},
-	{"cxxopts", "MIT", "https://github.com/jarro2783/cxxopts/"}
-};
+  {"nlohmann JSON", "MIT", "https://github.com/nlohmann/json/"},
+  {"cxxopts", "MIT", "https://github.com/jarro2783/cxxopts/"}};
 
 void licenseMsg() {
-	for (const auto& lib : licenses) {
-		std::cout << "This project uses the '" << colorcodes::fg::green << lib.name << colorcodes::reset << "' library, licensed under the " << colorcodes::fg::green << lib.license << colorcodes::reset << " license.\nMore information: " << colorcodes::fg::blue << lib.url << colorcodes::reset << "\n\n";
-	}
+  for (const auto &lib : licenses) {
+    std::cout << "This project uses the '" << colorcodes::fg::green << lib.name << colorcodes::reset
+              << "' library, licensed under the " << colorcodes::fg::green << lib.license
+              << colorcodes::reset << " license.\nMore information: " << colorcodes::fg::blue
+              << lib.url << colorcodes::reset << "\n\n";
+  }
 }
 
 void ensureStorageFilesExist() {

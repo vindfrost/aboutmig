@@ -2,7 +2,7 @@
  * File:        datafiles.h
  * Path:        include/storage/
  * Purpose:     Header file for datafile-related storage code
- * 
+ *
  * Author:      Raphael G. Grubbauer
  * Created:     2025-06-07
  * License:     MIT

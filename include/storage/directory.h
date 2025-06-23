@@ -2,7 +2,7 @@
  * File:        directory.h
  * Path:        include/storage/
  * Purpose:     Header file for folder-related storage code
- * 
+ *
  * Author:      Raphael G. Grubbauer
  * Created:     2025-06-07
  * License:     MIT
